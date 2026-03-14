@@ -1,0 +1,36 @@
+:root {
+  --bg: #ffffff;
+  --paper: #ffffff;
+  --ink: #0f172a;
+  --muted: #556173;
+  --line: #e6eaf0;
+  --accent: #2563eb;
+  --max-width: 1240px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #ffffff;
+  font-family: 'Sora', 'Inter', 'Noto Sans SC', sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-shell {
+  width: min(var(--max-width), calc(100% - 28px));
+  margin-inline: auto;
+}
+
+.notify-round {
+  border-radius: 999px !important;
+}
