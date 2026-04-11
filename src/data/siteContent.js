@@ -175,21 +175,20 @@ export const siteContent = {
       ],
     },
     {
-      title: '嵌入式 Linux 音乐播放器与高铁沙盘仿真系统',
-      company: '上海田之金计算机科技有限公司',
-      period: '2012.07 - 2016.06',
+      title: '分布式边缘计算框架与设备监视系统',
+      company: '个人项目亮点 / 相关经历',
+      period: '代表性技术实践',
       summary:
-        '在职业早期完成嵌入式 Linux 音乐播放器和高铁沙盘仿真系统开发，形成桌面端、嵌入式端、数据库和 RS232 控制链路的综合能力基础。',
-      stack: ['Linux', 'Qt', 'HTML5', 'MySQL', 'RS232'],
+        '围绕分布式边缘计算框架与设备监视场景，完成多设备数据接入、监视界面联动与高速采集测试，体现中间件、上位机和硬件协同开发能力。',
+      stack: ['OSP', 'Fast-DDS', 'FPGA', 'ZYNQ7020', 'AD7606', 'Qt'],
       highlights: [
-        '在嵌入式 Linux 上移植 Qt，实现网页容器与音视频播放能力。',
-        '自动读取 MySQL 表结构生成 Qt C++ 类，配合 2D 交通系统绘制铁路路网与车轨指令控制。',
+        '基于 OSP + Fast-DDS 构建设备侧与监视侧的数据通信框架，支撑分布式边缘节点协同。',
+        '结合 FPGA + ZYNQ7020 平台与 AD7606 芯片，完成 48 通道高速采集测试与数据链路验证。',
       ],
       media: [
         {
-          type: 'video',
-          src: asset('media/videos/product-demo-2.mp4'),
-          poster: asset('media/posters/product-demo-2.jpg'),
+          type: 'image',
+          src: asset('media/products/edge-monitor-demo.gif'),
           label: '设备软件演示片段 B',
         },
       ],
