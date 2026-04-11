@@ -4,10 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host",
+    "dev": "node server.js",
+    "dev:vite": "vite --host",
     "build": "vite build",
     "build:pages": "vite build",
-    "preview": "vite preview --host"
+    "preview": "node server.js",
+    "preview:vite": "vite preview --host"
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",

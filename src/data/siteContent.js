@@ -1,4 +1,16 @@
-const asset = (path) => `${import.meta.env.BASE_URL}${path}`
+const baseUrl = (() => {
+  const viteBase = import.meta.env?.BASE_URL
+
+  if (viteBase) {
+    return viteBase
+  }
+
+  const runtimeBase = globalThis.window?.__APP_BASE_PATH__ || './'
+
+  return runtimeBase.endsWith('/') ? runtimeBase : `${runtimeBase}/`
+})()
+
+const asset = (path) => `${baseUrl}${path}`
 
 export const siteContent = {
   hero: {

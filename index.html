@@ -2,7 +2,7 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
@@ -12,9 +12,18 @@
       content="彭辉的个人主页，聚焦万能型系统软件工程能力、真实产品履历与 AI 驱动开发方法。"
     />
     <title>彭辉 | 万能型系统软件工程师</title>
+    <link rel="stylesheet" href="./src/styles/main.css" />
   </head>
   <body>
     <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
+    <script>
+      window.__APP_BASE_PATH__ = './'
+    </script>
+    <script type="module">
+      import('./src/main.js').catch(async (error) => {
+        console.warn('Falling back to the zero-dependency runtime.', error)
+        await import('./src/app.js')
+      })
+    </script>
   </body>
 </html>
