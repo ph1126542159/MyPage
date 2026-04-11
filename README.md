@@ -61,6 +61,8 @@ npm run build
 2. 新建 Secret：`EDGEONE_API_TOKEN`
 3. 可选新建 Variable：`EDGEONE_PROJECT_NAME`
    - 不填时默认使用当前 GitHub 仓库名作为 EdgeOne 项目名
+   - EdgeOne 项目名只能包含小写字母、数字和连字符，工作流会自动把仓库名规范化
+   - 例如 `MyPage` 会自动变成 `mypage`
 
 如果还没配置 `EDGEONE_API_TOKEN`，这个工作流会自动跳过，不会把仓库 CI 标记为失败。
 

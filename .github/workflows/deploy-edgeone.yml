@@ -17,7 +17,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      EDGEONE_PROJECT_NAME: ${{ vars.EDGEONE_PROJECT_NAME || github.event.repository.name }}
+      EDGEONE_PROJECT_NAME_RAW: ${{ vars.EDGEONE_PROJECT_NAME || github.event.repository.name }}
       EDGEONE_API_TOKEN: ${{ secrets.EDGEONE_API_TOKEN }}
       VITE_BASE_PATH: /
     steps:
@@ -33,6 +33,21 @@ jobs:
           else
             echo "enabled=true" >> "$GITHUB_OUTPUT"
           fi
+
+      - name: Normalize EdgeOne project name
+        if: steps.edgeone.outputs.enabled == 'true'
+        id: project
+        shell: bash
+        run: |
+          raw="${EDGEONE_PROJECT_NAME_RAW}"
+          normalized="$(echo "$raw" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9-]+/-/g; s/-+/-/g; s/^-+//; s/-+$//')"
+
+          if [ -z "$normalized" ]; then
+            normalized="site-${GITHUB_RUN_ID}"
+          fi
+
+          echo "name=$normalized" >> "$GITHUB_OUTPUT"
+          echo "Using EdgeOne project name: $normalized"
 
       - name: Setup Node
         if: steps.edgeone.outputs.enabled == 'true'
@@ -51,4 +66,4 @@ jobs:
 
       - name: Deploy dist to EdgeOne Pages
         if: steps.edgeone.outputs.enabled == 'true'
-        run: npx edgeone@latest pages deploy ./dist -n "$EDGEONE_PROJECT_NAME" -t "$EDGEONE_API_TOKEN"
+        run: npx edgeone@latest pages deploy ./dist -n "${{ steps.project.outputs.name }}" -t "$EDGEONE_API_TOKEN"
