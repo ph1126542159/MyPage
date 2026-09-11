@@ -82,3 +82,9 @@ npm run build
 - GitHub Pages 工作流位于 `.github/workflows/deploy.yml`
 - EdgeOne Pages 工作流位于 `.github/workflows/deploy-edgeone.yml`
 - 执行约束与整体规划见 `AGENT.md`
+
+## GitHub 仓库总目录
+
+个人账号下的仓库正在统一整理。功能分类、模糊关键词、时间筛选和待清理队列见：
+
+- [REPOSITORY_INDEX.md](./REPOSITORY_INDEX.md)
