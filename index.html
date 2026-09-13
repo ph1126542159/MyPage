@@ -12,18 +12,12 @@
       content="彭辉的个人主页，聚焦万能型系统软件工程能力、真实产品履历与 AI 驱动开发方法。"
     />
     <title>彭辉 | 万能型系统软件工程师</title>
-    <link rel="stylesheet" href="./src/styles/main.css" />
   </head>
   <body>
     <div id="app"></div>
     <script>
       window.__APP_BASE_PATH__ = './'
     </script>
-    <script type="module">
-      import('./src/main.js').catch(async (error) => {
-        console.warn('Falling back to the zero-dependency runtime.', error)
-        await import('./src/app.js')
-      })
-    </script>
+    <script type="module" src="/src/main.js"></script>
   </body>
 </html>

@@ -38,7 +38,7 @@ export const siteContent = {
       { value: '5+', label: '代表产品方向' },
       { value: '7', label: '现代能力矩阵板块' },
     ],
-    portrait: asset('media/photos/profile-formal.jpg'),
+    portrait: asset('media/photos/profile-formal-cutout.png'),
     supportImage: asset('media/work/office-robot.jpg'),
   },
   introduction: {
@@ -105,28 +105,22 @@ export const siteContent = {
       ],
     },
     {
-      title: '微纳芯片核酸扩增 PCR 分析仪',
-      company: '上海驷格生物有限公司',
-      period: '2019.12 - 2021.02',
+      title: 'OpenDVA / 3DCS 尺寸变差分析平台',
+      company: '个人项目 · 数字孪生 / 尺寸工程',
+      period: '持续研发',
       summary:
-        '疫情期间主导 RK3568 + Linux 微纳芯片核酸扩增分析仪开发，围绕温控、采集、串口驱动和结果展示完成整机软件交付。',
-      stack: ['RK3568', 'Linux', 'Qt', 'USB Camera', 'Serial', 'Fast-DDS'],
+        '基于 Qt6、Qt3D 与 C++17 构建的桌面尺寸变差分析平台，面向复杂装配过程的数字孪生验证，把模型、工艺、公差、测量与仿真统一到同一套工程工作流。',
+      stack: ['Qt6 / Qt3D', 'C++17', 'CMake', 'Monte Carlo', 'GD&T', 'AAO'],
       highlights: [
-        '围绕温控系统与算法优化检测流程，缩短 PCR 扩增耗时并提升整体检测效率。',
-        '完成 Qt 交叉编译与 Linux 裁剪移植，编写 USB 摄像头与温控模块串口驱动。',
-        '实现检测方案编辑、执行过程中的图像与温度数据采集，以及结果分析与屏幕展示。',
-        '使用 Fast-DDS 处理多任务、多进程间异步事务。',
+        '支持三维装配、工艺树、基准与移动约束，组织复杂产品的装配关系和工位流程。',
+        '覆盖 GD&T 公差定义、尺寸测量与 Monte Carlo 变差仿真，输出 Cpk、越界率和贡献度等统计结果。',
+        '提供敏感度分析、AAO 优化、批处理队列，以及 HTML、CSV、Excel XML、HST、HLM 等报告导出能力。',
       ],
       media: [
         {
           type: 'image',
-          src: asset('media/work/pcr-room.jpg'),
-          label: 'PCR 相关工作现场',
-        },
-        {
-          type: 'image',
-          src: asset('media/products/calibration-ui.jpg'),
-          label: '设备软件界面',
+          src: asset('media/products/opendva-3dcs-forge.png'),
+          label: 'OpenDVA / 3DCS Forge 三维尺寸变差分析工作台',
         },
       ],
     },

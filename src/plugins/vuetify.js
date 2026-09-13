@@ -22,14 +22,14 @@ export default createVuetify({
     defaultTheme: 'portfolio',
     themes: {
       portfolio: {
-        dark: false,
+        dark: true,
         colors: {
-          background: '#ffffff',
-          surface: '#ffffff',
-          'surface-bright': '#ffffff',
-          primary: '#51677f',
-          secondary: '#8ea2b8',
-          accent: '#9bafc2',
+          background: '#030a11',
+          surface: '#071521',
+          'surface-bright': '#0b2030',
+          primary: '#5cddff',
+          secondary: '#3988ff',
+          accent: '#7b72ff',
           error: '#ff6b6b',
           info: '#6e859d',
           success: '#6f9c8f',
