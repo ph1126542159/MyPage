@@ -182,7 +182,7 @@ export const siteContent = {
       media: [
         {
           type: 'image',
-          src: asset('media/products/edge-monitor-demo.gif'),
+          src: asset('media/products/edge-monitor-demo.webp'),
           label: '设备软件演示片段 B',
         },
       ],
