@@ -1,50 +1,38 @@
 # Product Design QA
 
 - Source visual truth: `design-audit/aurora-3dcs-reference.png`
-- Desktop implementation: `design-audit/implementation-desktop-hero.png`
-- Focused 3DCS implementation: `design-audit/implementation-desktop-3dcs.png`
-- Mobile implementation: `design-audit/implementation-mobile-hero.png`
-- Desktop CSS viewport: 1440 x 1000 at device scale factor 1
-- Desktop captured pixels: 1425 x 990 (browser scrollbar/chrome exclusion)
-- Mobile CSS viewport: 390 x 844 at device scale factor 1
-- Mobile captured pixels: 375 x 811 (browser scrollbar/chrome exclusion)
-- Source pixels: 857 x 1836; compared proportionally because the generated visual target is a scaled long-page concept rather than a 1:1 browser capture
-- State: default hero, projects anchor, 3DCS project expanded, capability tab changed, mobile navigation open and closed
+- Primary user reference: `C:/Users/ph001/AppData/Local/Temp/codex-clipboard-359605bc-3836-4439-8e3f-f11c679a633f.png`
+- Desktop viewport tested: 1440 x 1000
+- Mobile viewport tested: 390 x 844
+- Browser: Codex in-app browser against the local Vite build
 
-## Full-view comparison
+## Fidelity result
 
-The implementation preserves the selected Aurora direction's dark navy canvas, ice-blue accent, editorial hero, real portrait, proof rail, three featured project rows, capability switcher, compact career timeline, AI workflow and atmospheric contact area. The coded page is intentionally content-truthful: invented robot and stock coding imagery from the mock were replaced by the user's actual product evidence.
+The rebuilt page follows the selected Aurora reference structure: compact fixed navigation, cinematic planet-and-portrait hero, seven-column proof rail, editorial alternating project rows, OpenDVA / 3DCS as project 02, orbital capability map, horizontal career timeline, and an atmospheric closing contact panel.
 
-## Focused region comparison
+The composition uses the real portrait and project evidence. The supplied 3DCS interface remains legible and is paired with functional descriptions of the 3D assembly tree, GD&T and measurement, Monte Carlo simulation, AAO optimization, batch processing, and reporting.
 
-The 3DCS region was compared separately because its interface labels are not readable in a full-page view. The implementation uses the supplied OpenDVA / 3DCS Forge screenshot without recreation, keeps the 3D assembly/work-tree/tolerance interface legible, and pairs it with source-backed functions: 3D assembly and process tree, constraints, GD&T and measurement, Monte Carlo simulation, AAO/sensitivity, batch processing and report exports.
+## Responsive checks
 
-## Required fidelity surfaces
-
-- Fonts and typography: Noto Sans SC plus Space Grotesk; readable body sizes, strong display hierarchy and concise line lengths. Desktop hero wrapping was corrected from three lines to two.
-- Spacing and layout rhythm: 1180px desktop grid, consistent section spacing, thin dividers and minimal container chrome. Responsive layouts collapse to two and one columns without horizontal overflow.
-- Colors and tokens: near-black/navy surfaces, cyan/blue accents and restrained ultraviolet atmosphere match the selected visual direction with accessible high-contrast foregrounds.
-- Image quality and asset fidelity: the real portrait was background-isolated without changing identity; all project media is user-provided, and the 3DCS screenshot is the exact supplied interface. No placeholder or code-drawn image assets remain.
-- Copy and content: portfolio facts remain grounded in the existing resume content. The 3DCS copy is grounded in `E:/3DCS` source documentation and local completion evidence; medical software was removed only from the featured-project slot, while its factual career entry remains in the complete work history.
-
-## Comparison history
-
-1. P2: the first desktop hero capture wrapped the final character of the headline onto a third line. The display size and column ratio were adjusted; the new capture matches the two-line target hierarchy.
-2. P1: the repository entry script silently loaded the legacy zero-dependency page. The entry was corrected to load the Vue application directly; the new hierarchy and interactions now render.
-3. P2: the mobile menu initially remained open during capture after an ambiguous hidden-link target. Direct menu-state testing confirmed open/close behavior, and the final mobile hero was captured with the menu closed.
+- Desktop hero retains the intended two-line display headline, portrait integration, and identity column.
+- Desktop project rows preserve the alternating image/text rhythm and thin cyan dividers.
+- At 390px, the headline is two lines, the portrait remains atmospheric rather than obscuring copy, and the proof rail scrolls without a visible scrollbar.
+- Mobile project rows collapse to a single reading column, the orbit becomes a compact capability grid, and the timeline becomes vertical.
 
 ## Interaction and runtime checks
 
-- Navigation anchors: working.
-- Mobile menu: open and close states verified.
-- Project details: expand/collapse verified on the 3DCS project.
-- Capability tabs: selected state and content swap verified.
-- Console: the earlier legacy-entry module error was diagnosed and fixed; the Vue page subsequently loaded and supported all tested interactions.
+- Navigation anchors: passed.
+- Mobile menu open/close: passed.
+- 3DCS project detail expand/collapse: passed; detail copy becomes visible.
+- Resume link: passed and points to `resume/Peng-Hui-Resume.pdf`.
+- Contact action: preserved as a mail link.
+- Browser console warnings/errors: none during the final desktop interaction pass.
 - Production build: passed.
+- GitHub Pages base-path build (`/MyPage/`): passed and emitted base-prefixed assets.
 
-## Residual P3 polish
+## Remaining visual differences
 
-- The implementation uses the real industrial project imagery rather than invented mock imagery, so crops differ from the concept while preserving its composition.
-- Browser screenshot capture excludes a small scrollbar/chrome margin; no layout issue is present in CSS viewport measurements.
+- The target is a concept image rather than a browser capture, so exact image crops vary by viewport.
+- Real project photographs replace any invented imagery while preserving the target layout and tone.
 
 final result: passed

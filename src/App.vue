@@ -1,229 +1,122 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { siteContent } from './data/siteContent'
 
-const navItems = [
-  { label: '首页', href: '#hero' },
-  { label: '项目实践', href: '#projects' },
-  { label: '技术能力', href: '#capability' },
-  { label: '工作经历', href: '#experience' },
-  { label: '联系我', href: '#contact' },
-]
-
-const featuredProjects = computed(() => [0, 1, 3].map((index) => siteContent.signatureProjects[index]))
-const activeCapability = ref(0)
+const asset = (path) => `${import.meta.env.BASE_URL}${path}`
 const menuOpen = ref(false)
-const resumeUrl = `${import.meta.env.BASE_URL}resume/Peng-Hui-Resume.pdf`
+const resumeUrl = asset('resume/Peng-Hui-Resume.pdf')
 
-const capabilityTabs = [
+const navItems = [
+  ['首页', '#hero'], ['关于我', '#about'], ['项目实践', '#projects'],
+  ['技术能力', '#capability'], ['工作经历', '#experience'], ['联系我', '#contact'],
+]
+const proofItems = [
+  ['13+', '年工程经验'], ['C/C++', '核心开发语言'], ['Linux', '嵌入式开发'],
+  ['Windows', '桌面应用'], ['机器人', '系统集成'], ['工业产品', '从 0 到 1 落地'], ['AI × 工程', '提效与创新'],
+]
+const projects = [
   {
-    label: '核心技术',
-    items: [
-      ['C/C++', '系统编程 · 性能 · 工程化'],
-      ['Linux', '嵌入式开发 · 驱动 · 调试'],
-      ['Windows 桌面', 'Qt / Win32 · 工业软件'],
-      ['通信与中间件', 'Fast-DDS · RPC · Socket'],
-      ['工业设备', '采集 · 控制 · 视觉检测'],
-      ['AI 辅助工程', 'Agent · Skill · 自动化'],
-    ],
+    number: '01', eyebrow: '机器人 / 嵌入式系统', title: '移动机器人研发与系统集成',
+    summary: '基于 Linux 的机器人底盘控制、传感器融合与上层应用开发，覆盖设备联调、运动开发及功能验证的全过程。',
+    image: asset('media/work/office-robot.jpg'), alt: '移动机器人研发与联调现场',
+    tags: ['Linux', 'C/C++', '机器人', '传感器', '系统集成'],
+    highlights: ['完成机器人底盘、执行器与传感器联调', '构建从设备通信到上层业务的完整链路', '以现场问题闭环驱动软件稳定性提升'],
+    aside: ['ROBOTS', 'IN', 'REAL WORLD'],
   },
   {
-    label: '工程实践',
-    items: [
-      ['系统架构', '多进程 · 多线程 · 共享内存'],
-      ['嵌入式平台', 'Rockchip · ARM · RTOS'],
-      ['设备联调', '串口 · 相机 · 传感器 · 板卡'],
-      ['3D / 视觉', 'Qt3D · OpenGL · OpenCV'],
-      ['质量体系', '测试 · CI/CD · Code Review'],
-      ['交付闭环', '需求 · 实现 · 验证 · 发布'],
-    ],
+    number: '02', eyebrow: '数字孪生 / 尺寸工程 / C++ 桌面端', title: 'OpenDVA / 3DCS 尺寸变差分析平台',
+    summary: '面向复杂装配的尺寸变差分析与数字孪生验证平台，以 3D 装配、公差建模和统计仿真支撑制造决策。',
+    image: asset('media/products/opendva-3dcs-forge.png'), alt: 'OpenDVA 3DCS 尺寸变差分析平台界面',
+    tags: ['3D 装配与工程树', 'GD&T 公差与测量', 'Monte Carlo 仿真', 'AAO 优化', '批处理与报告'],
+    highlights: ['在三维场景中组织零部件、工位、夹具与变差链', '通过公差、测量和 Monte Carlo 仿真评估装配波动', '支持优化探索、批量计算以及工程报告输出'],
+    aside: ['DIGITAL', 'TWIN', 'ENGINEERING'],
   },
   {
-    label: 'AI 应用',
-    items: [
-      ['需求拆解', '从目标到约束与验收标准'],
-      ['Agent 编排', '任务路由与多角色协作'],
-      ['Prompt 工程', '稳定、可复用的任务指令'],
-      ['自动化测试', '生成 · 回归 · 证据留存'],
-      ['代码审查', '风险识别与修复闭环'],
-      ['部署回归', '构建 · 发布 · 线上验证'],
-    ],
+    number: '03', eyebrow: 'AI × 工程效率', title: 'AI 辅助的工程开发实践',
+    summary: '在实际项目中引入 AI 工具，提升代码开发、问题定位、文档编写与测试效率，探索 AI 与工程融合的最佳实践。',
+    image: asset('media/products/robot-debug.jpg'), alt: '工程软件开发与设备调试现场',
+    tags: ['AI 工具', '工程效率', '自动化', '代码质量'],
+    highlights: ['将复杂需求拆分为可验证的工程任务', '让 AI 参与代码审查、测试补强与文档沉淀', '把构建、发布和回归验证组织成稳定流程'],
+    aside: ['AI', 'EMPOWERS', 'ENGINEERS'],
   },
 ]
-
-const projectImage = (project) => {
-  const media = project.media?.[0]
-  return media?.type === 'video' ? media.poster : media?.src
-}
+const capabilityNodes = [
+  ['mdi-code-braces', 'C/C++', '13+ 年开发经验\n性能 · 跨平台 · 工程化', 'left-top'],
+  ['mdi-linux', 'Linux', '嵌入式开发\n驱动 · 系统 · 调试', 'top'],
+  ['mdi-robot-industrial', '机器人', '运动控制 · 传感融合\nSLAM · 系统集成', 'right-top'],
+  ['mdi-microsoft-windows', 'Windows 桌面', '工业软件 · 设备控制\n界面 · 通信 · 数据处理', 'left-bottom'],
+  ['mdi-chip', '工业产品', '从需求到落地\n联调 · 质量 · 量产', 'bottom'],
+  ['mdi-creation-outline', 'AI 辅助工程', '代码生成 · 问题分析\n文档编写 · 自动化', 'right-bottom'],
+]
+const timeline = [
+  ['2011', '起步积累', '嵌入式软件与 C/C++'], ['2011 – 2015', '系统研发', 'Linux / Windows 工业应用'],
+  ['2015 – 2019', '复杂项目', '设备控制与平台架构'], ['2019 – 2023', '产品落地', '机器人与工业软件交付'],
+  ['2023 – 至今', 'AI × 工程', '以智能工具放大工程价值'],
+]
 </script>
 
 <template>
-  <v-app>
-    <div class="site-shell">
-      <header class="site-header">
-        <a class="brand" href="#hero" aria-label="返回首页">
-          <strong>Peng Hui</strong>
-          <span>Aurora Precision Lab</span>
-        </a>
-        <nav class="desktop-nav" aria-label="页面导航">
-          <a v-for="item in navItems" :key="item.href" :href="item.href">{{ item.label }}</a>
-        </nav>
-        <a class="header-contact" :href="`mailto:${siteContent.hero.email}`">联系我</a>
-        <button class="menu-button" type="button" aria-label="打开导航" @click="menuOpen = !menuOpen">
-          <v-icon :icon="menuOpen ? 'mdi-close' : 'mdi-menu'" />
-        </button>
-        <nav v-if="menuOpen" class="mobile-nav" aria-label="移动端导航">
-          <a v-for="item in navItems" :key="item.href" :href="item.href" @click="menuOpen = false">
-            {{ item.label }}
-          </a>
-        </nav>
-      </header>
+  <v-app><div class="site-shell" :style="{ '--aurora-bg': `url(${asset('media/aurora-lab-bg.png')})` }">
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="#hero"><strong>Peng Hui</strong><span>Aurora Precision Lab</span></a>
+        <nav class="desktop-nav" aria-label="页面导航"><a v-for="item in navItems" :key="item[1]" :href="item[1]">{{ item[0] }}</a></nav>
+        <button class="menu-button" type="button" :aria-expanded="menuOpen" aria-label="切换导航" @click="menuOpen = !menuOpen"><v-icon :icon="menuOpen ? 'mdi-close' : 'mdi-menu'" /></button>
+      </div>
+      <nav v-if="menuOpen" class="mobile-nav"><a v-for="item in navItems" :key="item[1]" :href="item[1]" @click="menuOpen = false">{{ item[0] }}</a></nav>
+    </header>
 
-      <main>
-        <section id="hero" class="hero">
-          <div class="hero-atmosphere" aria-hidden="true"></div>
-          <div class="page-width hero-grid">
-            <div class="hero-copy">
-              <p class="kicker">工程 × 机器人 × 工业产品 × AI</p>
-              <h1>用工程与智能<br />让复杂问题变得简单</h1>
-              <p class="hero-lead">
-                13+ 年 C/C++ 开发经验，专注 Linux、嵌入式系统、Windows 桌面应用、工业设备与三维工程软件。
-                结合 AI 工作流，打造高效率、更可靠的工程解决方案。
-              </p>
-              <div class="hero-actions">
-                <a class="button button-primary" href="#projects">查看我的项目 <v-icon icon="mdi-arrow-right" /></a>
-                <a class="button button-ghost" :href="resumeUrl" download="彭辉-系统软件工程师-简历.pdf">
-                  <v-icon icon="mdi-download-outline" /> 下载简历
-                </a>
-                <a class="button button-ghost" :href="`mailto:${siteContent.hero.email}`">
-                  <v-icon icon="mdi-email-outline" /> 联系我
-                </a>
-              </div>
-            </div>
-            <div class="hero-portrait-wrap">
-              <img :src="siteContent.hero.portrait" alt="彭辉正式形象照" class="hero-portrait" />
-              <div class="identity-card">
-                <strong>彭辉</strong>
-                <span>Peng Hui</span>
-                <i></i>
-                <p>专注工程落地<br />连接真实世界</p>
-              </div>
+    <main>
+      <section id="hero" class="hero">
+        <div class="hero-grid page-width">
+          <div class="hero-copy">
+            <p class="kicker">工程 × 机器人 × 工业产品 × AI</p>
+            <h1>用工程与智能<br />让复杂问题变得简单</h1>
+            <p class="hero-lead">13+ 年 C/C++ 开发经验，专注于 Linux、嵌入式系统、Windows 桌面应用、机器人与工业产品。结合 AI 工具，打造更高效率、更可靠的工程解决方案。</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#projects">查看我的项目 <v-icon icon="mdi-arrow-right" /></a>
+              <a class="button button-ghost" :href="resumeUrl" download="彭辉-系统软件工程师-简历.pdf"><v-icon icon="mdi-download-outline" /> 下载简历</a>
             </div>
           </div>
-          <div class="proof-rail">
-            <div class="page-width proof-grid">
-              <div v-for="stat in siteContent.hero.stats" :key="stat.label" class="proof-item">
-                <strong>{{ stat.value }}</strong><span>{{ stat.label }}</span>
-              </div>
-              <div class="proof-item"><strong>AI × 工程</strong><span>提效与创新</span></div>
-            </div>
-          </div>
-        </section>
+          <img class="hero-portrait" :src="asset('media/photos/profile-formal-cutout.png')" alt="彭辉正式形象照" />
+          <div class="hero-identity"><strong>彭 辉</strong><span>Peng Hui</span><i></i><p>专注工程落地<br />连接真实世界</p></div>
+        </div>
+        <div id="about" class="proof-rail"><div class="proof-grid page-width"><div v-for="item in proofItems" :key="item[0]" class="proof-item"><strong>{{ item[0] }}</strong><span>{{ item[1] }}</span></div></div></div>
+      </section>
 
-        <section id="projects" class="section projects-section">
-          <div class="page-width">
-            <header class="section-heading">
-              <div><p class="kicker">Featured Projects</p><h2>精选项目实践</h2></div>
-              <p>真实项目 · 真实场景 · 真实代码 · 真实结果</p>
-            </header>
-            <article v-for="(project, index) in featuredProjects" :key="project.title" class="project-row">
-              <div class="project-index">0{{ index + 1 }}</div>
-              <div class="project-media">
-                <img :src="projectImage(project)" :alt="project.media?.[0]?.label || project.title" loading="lazy" />
-              </div>
-              <div class="project-copy">
-                <p class="project-meta">{{ project.company }} <span>{{ project.period }}</span></p>
-                <h3>{{ project.title }}</h3>
-                <p>{{ project.summary }}</p>
-                <div class="tag-list" aria-label="技术标签">
-                  <span v-for="tag in project.stack" :key="tag">{{ tag }}</span>
-                </div>
-                <details>
-                  <summary>了解这个项目 <v-icon icon="mdi-arrow-right" /></summary>
-                  <ul><li v-for="item in project.highlights" :key="item">{{ item }}</li></ul>
-                </details>
-              </div>
-            </article>
+      <section id="projects" class="projects-section"><div class="page-width">
+        <header class="section-heading"><div><p class="kicker">Selected Work</p><h2>精选项目实践</h2></div><p>真实项目 · 真实场景 · 真实代码 · 真实结果</p><a href="#project-02">查看重点项目 <v-icon icon="mdi-arrow-right" /></a></header>
+        <article v-for="project in projects" :id="`project-${project.number}`" :key="project.number" class="project-row" :class="`project-${project.number}`">
+          <div class="project-number">{{ project.number }}</div>
+          <div class="project-copy"><p class="project-eyebrow">{{ project.eyebrow }}</p><h3>{{ project.title }}</h3><p>{{ project.summary }}</p>
+            <div class="tag-list"><span v-for="tag in project.tags" :key="tag">{{ tag }}</span></div>
+            <details><summary>了解这个项目 <v-icon icon="mdi-arrow-right" /></summary><ul><li v-for="item in project.highlights" :key="item">{{ item }}</li></ul></details>
           </div>
-        </section>
+          <figure class="project-media"><img :src="project.image" :alt="project.alt" loading="lazy" /></figure>
+          <div class="project-aside"><span v-for="word in project.aside" :key="word">{{ word }}</span></div>
+        </article>
+      </div></section>
 
-        <section id="capability" class="section capability-section">
-          <div class="page-width">
-            <header class="section-heading">
-              <div><p class="kicker">Tech Stack</p><h2>技术能力</h2></div>
-              <p>多领域融合的工程能力，解决复杂问题的系统化思维</p>
-            </header>
-            <div class="capability-tabs" role="tablist" aria-label="能力分类">
-              <button
-                v-for="(tab, index) in capabilityTabs"
-                :key="tab.label"
-                type="button"
-                role="tab"
-                :aria-selected="activeCapability === index"
-                :class="{ active: activeCapability === index }"
-                @click="activeCapability = index"
-              >{{ tab.label }}</button>
-            </div>
-            <div class="capability-grid">
-              <div v-for="item in capabilityTabs[activeCapability].items" :key="item[0]" class="capability-item">
-                <strong>{{ item[0] }}</strong><span>{{ item[1] }}</span>
-              </div>
-            </div>
-          </div>
-        </section>
+      <section id="capability" class="capability-section"><div class="page-width">
+        <header class="section-heading compact"><div><p class="kicker">Tech Stack</p><h2>技术能力</h2></div><p>多领域融合的工程能力，解决复杂问题的系统化思维</p></header>
+        <div class="orbit-map" aria-label="工程实践与 AI 增效能力图">
+          <div class="orbit-ring orbit-one"></div><div class="orbit-ring orbit-two"></div>
+          <div class="orbit-core"><span>工程实践</span><b>×</b><strong>AI 增效</strong><small>更高效地解决<br />真实世界的问题</small></div>
+          <div v-for="node in capabilityNodes" :key="node[1]" class="orbit-node" :class="node[3]"><i><v-icon :icon="node[0]" /></i><div><strong>{{ node[1] }}</strong><span>{{ node[2] }}</span></div></div>
+        </div>
+      </div></section>
 
-        <section id="experience" class="section experience-section">
-          <div class="page-width">
-            <header class="section-heading">
-              <div><p class="kicker">Career Timeline</p><h2>职业轨迹</h2></div>
-              <p>持续深耕，在真实项目中成长</p>
-            </header>
-            <div class="timeline">
-              <article v-for="item in siteContent.experiences" :key="`${item.company}-${item.period}`">
-                <span class="timeline-dot"></span>
-                <time>{{ item.period }}</time>
-                <strong>{{ item.company }}</strong>
-                <em>{{ item.role }}</em>
-                <p>{{ item.summary }}</p>
-              </article>
-            </div>
-          </div>
-        </section>
+      <section id="experience" class="experience-section"><div class="page-width">
+        <header class="section-heading compact"><div><p class="kicker">Career Path</p><h2>职业轨迹</h2></div><p>持续积累，在实践中成长</p></header>
+        <div class="timeline"><article v-for="(item, index) in timeline" :key="item[0]" :class="{ active: index === timeline.length - 1 }"><div class="timeline-dot"></div><strong>{{ item[0] }}</strong><h3>{{ item[1] }}</h3><p>{{ item[2] }}</p></article></div>
+      </div></section>
 
-        <section id="ai" class="section ai-section">
-          <div class="page-width">
-            <header class="section-heading">
-              <div><p class="kicker">AI Workflow</p><h2>把 AI 变成工程交付能力</h2></div>
-              <p>{{ siteContent.aiWorkflow.intro }}</p>
-            </header>
-            <ol class="workflow-list">
-              <li v-for="(card, index) in siteContent.aiWorkflow.cards" :key="card.title">
-                <span>0{{ index + 1 }}</span><v-icon :icon="card.icon" /><strong>{{ card.title }}</strong><p>{{ card.text }}</p>
-              </li>
-            </ol>
-          </div>
-        </section>
-
-        <section id="contact" class="contact-section">
-          <div class="contact-atmosphere" aria-hidden="true"></div>
-          <div class="page-width contact-inner">
-            <div>
-              <p class="kicker">Let's Build Together</p>
-              <h2>一起让有价值的想法落地</h2>
-              <p>如果你正在寻找兼具工程深度、系统思维和创新精神的合作伙伴，欢迎与我联系。</p>
-            </div>
-            <div class="contact-actions">
-              <a class="button button-primary" :href="`mailto:${siteContent.hero.email}`">联系我 <v-icon icon="mdi-arrow-right" /></a>
-              <a :href="`tel:${siteContent.hero.phone}`"><v-icon icon="mdi-phone-outline" /> {{ siteContent.hero.phone }}</a>
-              <a :href="`mailto:${siteContent.hero.email}`"><v-icon icon="mdi-email-outline" /> {{ siteContent.hero.email }}</a>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <footer class="site-footer">
-        <div class="page-width"><span>Peng Hui · Aurora Precision Lab</span><span>工程为本 · 持续学习 · 拥抱 AI</span></div>
-      </footer>
-    </div>
-  </v-app>
+      <section id="contact" class="closing-section"><div class="page-width closing-content">
+        <p class="kicker">Build · Solve · Automate · Together</p><h2>把复杂问题，变成可落地的答案</h2>
+        <p>如果你正在寻找一位懂系统、懂产品，也懂如何用 AI 提升工程效率的开发者，欢迎联系我。</p>
+        <div class="hero-actions"><a class="button button-primary" :href="`mailto:${siteContent.hero.email}`"><v-icon icon="mdi-email-outline" /> 联系我</a><a class="button button-ghost" :href="resumeUrl" download="彭辉-系统软件工程师-简历.pdf"><v-icon icon="mdi-download-outline" /> 下载简历</a></div>
+      </div></section>
+    </main>
+    <footer class="site-footer"><div class="page-width"><strong>Peng Hui</strong><span>Engineering clarity for complex systems.</span><small>© 2026 Aurora Precision Lab</small></div></footer>
+  </div></v-app>
 </template>
