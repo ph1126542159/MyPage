@@ -13,6 +13,7 @@ const navItems = [
 const featuredProjects = computed(() => [0, 1, 3].map((index) => siteContent.signatureProjects[index]))
 const activeCapability = ref(0)
 const menuOpen = ref(false)
+const resumeUrl = `${import.meta.env.BASE_URL}resume/Peng-Hui-Resume.pdf`
 
 const capabilityTabs = [
   {
@@ -91,6 +92,9 @@ const projectImage = (project) => {
               </p>
               <div class="hero-actions">
                 <a class="button button-primary" href="#projects">查看我的项目 <v-icon icon="mdi-arrow-right" /></a>
+                <a class="button button-ghost" :href="resumeUrl" download="彭辉-系统软件工程师-简历.pdf">
+                  <v-icon icon="mdi-download-outline" /> 下载简历
+                </a>
                 <a class="button button-ghost" :href="`mailto:${siteContent.hero.email}`">
                   <v-icon icon="mdi-email-outline" /> 联系我
                 </a>
