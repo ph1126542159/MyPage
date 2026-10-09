@@ -19,7 +19,7 @@ export const siteContent = {
     subtitle:
       '13+ 年 C/C++ / Linux / 嵌入式 / Windows 桌面端经验，持续把复杂设备、工业产品与现代 AI 工作流真正落到可交付系统。',
     location: '上海',
-    phone: '17328272654',
+    phone: '15506205981',
     email: 'hp1126370@gmail.com',
     tagline: '万能型工程师 / AI 驱动开发者 / 系统级落地者',
     tags: [

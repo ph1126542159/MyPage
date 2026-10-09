@@ -14,3 +14,33 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 .hero{background-image:linear-gradient(90deg,rgba(0,6,18,.98) 0%,rgba(0,9,26,.76) 43%,rgba(0,9,27,.14) 75%),linear-gradient(0deg,#020714 0%,transparent 24%),var(--aurora-bg)}
 .closing-section{background-image:linear-gradient(90deg,rgba(1,7,19,.96),rgba(2,11,31,.68),rgba(1,7,17,.23)),linear-gradient(0deg,#020713 0%,transparent 35%),var(--aurora-bg)}
+
+.project-status{display:inline-block;margin-top:16px;padding:4px 9px;border:1px solid rgba(240,193,105,.4);border-radius:3px;color:#eac68c;font-size:10px}
+.project-copy>.project-note{margin-top:14px;font-size:11px;color:#8ba0bb}
+.project-link{display:inline-flex;align-items:center;gap:6px;margin-top:18px;color:#8acfff;font-size:12px}
+.project-link:hover{color:#fff}
+.project-media-software{height:300px;border:1px solid var(--line);border-radius:5px;background:#0b1522}
+.project-media-software img{object-fit:contain;filter:none}
+.project-media-software:after,.workflow-media:after{display:none}
+.workflow-media{height:auto;padding:24px;border:1px solid var(--line);border-radius:5px;background:linear-gradient(145deg,#0d2447,#050e20)}
+.workflow-title{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px;margin-bottom:22px;color:#cfeaff;font-size:15px;font-weight:700}
+.workflow-title>span{color:#809bbf;font-size:10px;font-weight:400}
+.workflow-step{display:flex;align-items:center;gap:14px;padding:14px;border:1px solid rgba(110,183,255,.25);border-radius:5px;background:rgba(8,28,61,.8)}
+.workflow-step>.v-icon{color:#70cfff;font-size:27px}
+.workflow-step strong,.workflow-step span{display:block}
+.workflow-step strong{color:#e8f5ff;font-size:13px}
+.workflow-step span{margin-top:5px;color:#8da7c9;font-size:10px}
+.workflow-connector{display:flex;align-items:center;justify-content:center;gap:12px;padding:13px;color:#6cc5fa;font-size:11px}
+.workflow-outcomes{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:18px}
+.workflow-outcomes span{padding:5px 8px;border-radius:3px;background:rgba(77,156,255,.12);color:#a8c9e8;font-size:10px}
+.contact-details{display:flex;flex-wrap:wrap;gap:14px;margin:24px 0 0;font-style:normal}
+.contact-details>a{display:flex;align-items:center;gap:12px;max-width:100%;padding:14px 18px;border:1px solid var(--line);border-radius:5px;background:rgba(4,18,42,.65);transition:border-color .2s}
+.contact-details>a:hover{border-color:#78c8ff}
+.contact-details .v-icon{color:#78c8ff}
+.contact-details span{min-width:0}
+.contact-details small,.contact-details strong{display:block}
+.contact-details small{margin-bottom:4px;color:#8ca7c7;font-size:11px}
+.contact-details strong{color:#e3f2ff;font-size:15px;overflow-wrap:anywhere}
+.button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid #78c8ff;outline-offset:4px}
+.closing-section{padding-block:48px}
+@media(max-width:640px){.workflow-media{padding:16px}.contact-details{flex-direction:column;align-items:flex-start}.contact-details strong{font-size:14px}}

@@ -39,6 +39,24 @@ const projects = [
     highlights: ['将复杂需求拆分为可验证的工程任务', '让 AI 参与代码审查、测试补强与文档沉淀', '把构建、发布和回归验证组织成稳定流程'],
     aside: ['AI', 'EMPOWERS', 'ENGINEERS'],
   },
+  {
+    number: '04', eyebrow: 'AI × 硬件设计 / C++ 桌面端', title: 'MyBlue · 硬件创意工作台',
+    summary: '从一个硬件想法出发，把系统方案、采购清单、电气接线、三维装配与制作交付组织到同一工作台，通过本机 Codex 辅助完善设计。',
+    image: asset('media/products/myblue-workbench.png'), alt: 'MyBlue 硬件创意工作台的三维装配与设计界面',
+    tags: ['C++ / Qt', 'Codex', 'KiCad 原理图', '参数化 CAD', 'MuJoCo 仿真'],
+    highlights: ['将需求、部件、接线与制作步骤关联到同一项目，支持保存与撤销', '接入 KiCad、CadQuery 和 MuJoCo，生成可追溯的设计文件与引擎结果', '设计变化后重新核对相关结果，保留待核验问题与阶段快照'],
+    status: '开发预览', note: '当前展示软件设计能力；完整流程与实物验证仍在持续完善。',
+    aside: ['IDEA', 'TO', 'HARDWARE'],
+  },
+  {
+    number: '05', eyebrow: 'AI 开发助手 / Windows / MCP', title: 'GPT-Asstiant · CodeX 助手',
+    summary: '让网页版 ChatGPT 连接 Windows 本地开发环境，把项目读取、代码修改、命令执行、测试与构建串成可管理、可恢复的开发工作流。',
+    tags: ['Electron', 'Coding Tools MCP', '项目与聊天绑定', 'Git / Worktree', '长任务恢复'],
+    highlights: ['按项目绑定聊天与工作区，让 AI 在指定项目中读取文件、修改代码和执行命令', '统一管理 Runtime、连接、权限与构建验证，支持 Git 和 Worktree 开发', '记录长任务进度与执行回执，支持中断恢复，并组织项目知识与开发经验'],
+    diagram: true, alt: 'CodeX 助手工作流示意：ChatGPT 通过 Coding Tools MCP 连接本地项目，进行开发、测试、构建与任务恢复',
+    url: 'https://github.com/ph1126542159/codex-assistant-releases/releases', linkLabel: '下载 CodeX 助手',
+    aside: ['CHAT', 'TO', 'DELIVERY'],
+  },
 ]
 const capabilityNodes = [
   ['mdi-code-braces', 'C/C++', '13+ 年开发经验\n性能 · 跨平台 · 工程化', 'left-top'],
@@ -90,9 +108,19 @@ const timeline = [
           <div class="project-number">{{ project.number }}</div>
           <div class="project-copy"><p class="project-eyebrow">{{ project.eyebrow }}</p><h3>{{ project.title }}</h3><p>{{ project.summary }}</p>
             <div class="tag-list"><span v-for="tag in project.tags" :key="tag">{{ tag }}</span></div>
+            <div v-if="project.status" class="project-status">{{ project.status }}</div>
             <details><summary>了解这个项目 <v-icon icon="mdi-arrow-right" /></summary><ul><li v-for="item in project.highlights" :key="item">{{ item }}</li></ul></details>
+            <p v-if="project.note" class="project-note">{{ project.note }}</p>
+            <a v-if="project.url" class="project-link" :href="project.url" target="_blank" rel="noopener noreferrer">{{ project.linkLabel }} <v-icon icon="mdi-open-in-new" /></a>
           </div>
-          <figure class="project-media"><img :src="project.image" :alt="project.alt" loading="lazy" /></figure>
+          <figure v-if="project.image" class="project-media" :class="{ 'project-media-software': project.number === '04' }"><img :src="project.image" :alt="project.alt" loading="lazy" /></figure>
+          <figure v-else-if="project.diagram" class="project-media workflow-media" role="img" :aria-label="project.alt">
+            <div class="workflow-title">CodeX 助手 <span>开发工作流示意</span></div>
+            <div class="workflow-step"><v-icon icon="mdi-chat-outline" /><div><strong>ChatGPT</strong><span>需求 · 分析 · 开发协同</span></div></div>
+            <div class="workflow-connector">Coding Tools MCP <v-icon icon="mdi-arrow-down" /></div>
+            <div class="workflow-step"><v-icon icon="mdi-folder-code-outline" /><div><strong>本地项目 / Windows</strong><span>读写代码 · 执行命令 · Git</span></div></div>
+            <div class="workflow-outcomes"><span>测试与构建</span><span>任务恢复</span><span>知识沉淀</span></div>
+          </figure>
           <div class="project-aside"><span v-for="word in project.aside" :key="word">{{ word }}</span></div>
         </article>
       </div></section>
@@ -114,6 +142,10 @@ const timeline = [
       <section id="contact" class="closing-section"><div class="page-width closing-content">
         <p class="kicker">Build · Solve · Automate · Together</p><h2>把复杂问题，变成可落地的答案</h2>
         <p>如果你正在寻找一位懂系统、懂产品，也懂如何用 AI 提升工程效率的开发者，欢迎联系我。</p>
+        <address class="contact-details">
+          <a :href="`tel:${siteContent.hero.phone}`"><v-icon icon="mdi-phone-outline" /><span><small>电话</small><strong>{{ siteContent.hero.phone }}</strong></span></a>
+          <a :href="`mailto:${siteContent.hero.email}`"><v-icon icon="mdi-email-outline" /><span><small>邮箱</small><strong>{{ siteContent.hero.email }}</strong></span></a>
+        </address>
         <div class="hero-actions"><a class="button button-primary" :href="`mailto:${siteContent.hero.email}`"><v-icon icon="mdi-email-outline" /> 联系我</a><a class="button button-ghost" :href="resumeUrl" download="彭辉-系统软件工程师-简历.pdf"><v-icon icon="mdi-download-outline" /> 下载简历</a></div>
       </div></section>
     </main>
