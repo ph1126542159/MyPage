@@ -78,6 +78,9 @@ npm run build
 ## 说明
 
 - 页面源码位于 `src/`
+- AI 作品专题位于 `src/components/ProjectShowcase.vue`，内容源为 `src/data/featuredProjects.js`
+- MyBlue 与 CodeX 助手各提供 6 张可切换、可放大的截图；图片位于 `public/media/projects/`
+- MyBlue 图片来自不同开发阶段的实际软件界面；CodeX 助手图片来自真实产品渲染界面，使用内置示例工作区和演示数据，不作为真实任务验收证据
 - 媒体资源位于 `public/media/`
 - GitHub Pages 工作流位于 `.github/workflows/deploy.yml`
 - EdgeOne Pages 工作流位于 `.github/workflows/deploy-edgeone.yml`

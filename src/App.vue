@@ -1,13 +1,15 @@
 <script setup>
 import { ref } from 'vue'
 import { siteContent } from './data/siteContent'
+import { featuredProjects } from './data/featuredProjects'
+import ProjectShowcase from './components/ProjectShowcase.vue'
 
 const asset = (path) => `${import.meta.env.BASE_URL}${path}`
 const menuOpen = ref(false)
 const resumeUrl = asset('resume/Peng-Hui-Resume.pdf')
 
 const navItems = [
-  ['首页', '#hero'], ['关于我', '#about'], ['项目实践', '#projects'],
+  ['首页', '#hero'], ['关于我', '#about'], ['AI 作品', '#ai-projects'], ['项目实践', '#projects'],
   ['技术能力', '#capability'], ['工作经历', '#experience'], ['联系我', '#contact'],
 ]
 const proofItems = [
@@ -38,24 +40,6 @@ const projects = [
     tags: ['AI 工具', '工程效率', '自动化', '代码质量'],
     highlights: ['将复杂需求拆分为可验证的工程任务', '让 AI 参与代码审查、测试补强与文档沉淀', '把构建、发布和回归验证组织成稳定流程'],
     aside: ['AI', 'EMPOWERS', 'ENGINEERS'],
-  },
-  {
-    number: '04', eyebrow: 'AI × 硬件设计 / C++ 桌面端', title: 'MyBlue · 硬件创意工作台',
-    summary: '从一个硬件想法出发，把系统方案、采购清单、电气接线、三维装配与制作交付组织到同一工作台，通过本机 Codex 辅助完善设计。',
-    image: asset('media/products/myblue-workbench.png'), alt: 'MyBlue 硬件创意工作台的三维装配与设计界面',
-    tags: ['C++ / Qt', 'Codex', 'KiCad 原理图', '参数化 CAD', 'MuJoCo 仿真'],
-    highlights: ['将需求、部件、接线与制作步骤关联到同一项目，支持保存与撤销', '接入 KiCad、CadQuery 和 MuJoCo，生成可追溯的设计文件与引擎结果', '设计变化后重新核对相关结果，保留待核验问题与阶段快照'],
-    status: '开发预览', note: '当前展示软件设计能力；完整流程与实物验证仍在持续完善。',
-    aside: ['IDEA', 'TO', 'HARDWARE'],
-  },
-  {
-    number: '05', eyebrow: 'AI 开发助手 / Windows / MCP', title: 'GPT-Asstiant · CodeX 助手',
-    summary: '让网页版 ChatGPT 连接 Windows 本地开发环境，把项目读取、代码修改、命令执行、测试与构建串成可管理、可恢复的开发工作流。',
-    tags: ['Electron', 'Coding Tools MCP', '项目与聊天绑定', 'Git / Worktree', '长任务恢复'],
-    highlights: ['按项目绑定聊天与工作区，让 AI 在指定项目中读取文件、修改代码和执行命令', '统一管理 Runtime、连接、权限与构建验证，支持 Git 和 Worktree 开发', '记录长任务进度与执行回执，支持中断恢复，并组织项目知识与开发经验'],
-    diagram: true, alt: 'CodeX 助手工作流示意：ChatGPT 通过 Coding Tools MCP 连接本地项目，进行开发、测试、构建与任务恢复',
-    url: 'https://github.com/ph1126542159/codex-assistant-releases/releases', linkLabel: '下载 CodeX 助手',
-    aside: ['CHAT', 'TO', 'DELIVERY'],
   },
 ]
 const capabilityNodes = [
@@ -92,7 +76,7 @@ const timeline = [
             <h1>用工程与智能<br />让复杂问题变得简单</h1>
             <p class="hero-lead">13+ 年 C/C++ 开发经验，专注于 Linux、嵌入式系统、Windows 桌面应用、机器人与工业产品。结合 AI 工具，打造更高效率、更可靠的工程解决方案。</p>
             <div class="hero-actions">
-              <a class="button button-primary" href="#projects">查看我的项目 <v-icon icon="mdi-arrow-right" /></a>
+              <a class="button button-primary" href="#ai-projects">探索我的 AI 作品 <v-icon icon="mdi-arrow-right" /></a>
               <a class="button button-ghost" :href="resumeUrl" download="彭辉-系统软件工程师-简历.pdf"><v-icon icon="mdi-download-outline" /> 下载简历</a>
             </div>
           </div>
@@ -102,25 +86,20 @@ const timeline = [
         <div id="about" class="proof-rail"><div class="proof-grid page-width"><div v-for="item in proofItems" :key="item[0]" class="proof-item"><strong>{{ item[0] }}</strong><span>{{ item[1] }}</span></div></div></div>
       </section>
 
+      <section id="ai-projects" class="featured-section"><div class="page-width">
+        <header class="featured-section-heading"><div><p class="kicker">Independent Products · AI × Engineering</p><h2>把 AI，做进真实的工程里。</h2><p>两个自主研发的桌面项目，连接硬件创意与软件交付。</p></div><nav aria-label="AI 作品导航"><a href="#project-myblue">MyBlue <v-icon icon="mdi-arrow-down-right" /></a><a href="#project-codex">CodeX 助手 <v-icon icon="mdi-arrow-down-right" /></a></nav></header>
+        <ProjectShowcase v-for="project in featuredProjects" :key="project.id" :project="project" />
+      </div></section>
+
       <section id="projects" class="projects-section"><div class="page-width">
         <header class="section-heading"><div><p class="kicker">Selected Work</p><h2>精选项目实践</h2></div><p>真实项目 · 真实场景 · 真实代码 · 真实结果</p><a href="#project-02">查看重点项目 <v-icon icon="mdi-arrow-right" /></a></header>
         <article v-for="project in projects" :id="`project-${project.number}`" :key="project.number" class="project-row" :class="`project-${project.number}`">
           <div class="project-number">{{ project.number }}</div>
           <div class="project-copy"><p class="project-eyebrow">{{ project.eyebrow }}</p><h3>{{ project.title }}</h3><p>{{ project.summary }}</p>
             <div class="tag-list"><span v-for="tag in project.tags" :key="tag">{{ tag }}</span></div>
-            <div v-if="project.status" class="project-status">{{ project.status }}</div>
             <details><summary>了解这个项目 <v-icon icon="mdi-arrow-right" /></summary><ul><li v-for="item in project.highlights" :key="item">{{ item }}</li></ul></details>
-            <p v-if="project.note" class="project-note">{{ project.note }}</p>
-            <a v-if="project.url" class="project-link" :href="project.url" target="_blank" rel="noopener noreferrer">{{ project.linkLabel }} <v-icon icon="mdi-open-in-new" /></a>
           </div>
-          <figure v-if="project.image" class="project-media" :class="{ 'project-media-software': project.number === '04' }"><img :src="project.image" :alt="project.alt" loading="lazy" /></figure>
-          <figure v-else-if="project.diagram" class="project-media workflow-media" role="img" :aria-label="project.alt">
-            <div class="workflow-title">CodeX 助手 <span>开发工作流示意</span></div>
-            <div class="workflow-step"><v-icon icon="mdi-chat-outline" /><div><strong>ChatGPT</strong><span>需求 · 分析 · 开发协同</span></div></div>
-            <div class="workflow-connector">Coding Tools MCP <v-icon icon="mdi-arrow-down" /></div>
-            <div class="workflow-step"><v-icon icon="mdi-folder-code-outline" /><div><strong>本地项目 / Windows</strong><span>读写代码 · 执行命令 · Git</span></div></div>
-            <div class="workflow-outcomes"><span>测试与构建</span><span>任务恢复</span><span>知识沉淀</span></div>
-          </figure>
+          <figure class="project-media"><img :src="project.image" :alt="project.alt" loading="lazy" /></figure>
           <div class="project-aside"><span v-for="word in project.aside" :key="word">{{ word }}</span></div>
         </article>
       </div></section>
