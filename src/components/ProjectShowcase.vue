@@ -47,7 +47,7 @@ const selected = computed(() => props.project.screenshots[selectedIndex.value])
     </details>
 
     <v-dialog v-model="viewerOpen" max-width="1440" class="screenshot-dialog" :aria-label="`${project.name} ${selected.title} 大图`">
-      <div class="image-viewer"><header><strong>{{ project.name }} · {{ selected.title }}</strong><button type="button" aria-label="关闭大图" @click="viewerOpen = false"><v-icon icon="mdi-close" /></button></header><img :src="selected.file" :alt="selected.title" /><p>{{ selected.text }}</p></div>
+      <div class="image-viewer"><header><strong>{{ project.name }} · {{ selected.title }}</strong><a class="image-viewer-original" :href="selected.file" target="_blank" rel="noopener noreferrer">查看原图</a><button type="button" aria-label="关闭大图" @click="viewerOpen = false"><v-icon icon="mdi-close" /></button></header><img :src="selected.file" :alt="selected.title" /><p>{{ selected.text }}</p></div>
     </v-dialog>
   </article>
 </template>

@@ -46,6 +46,7 @@
 .screen-chrome small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .screen-open { position: relative; display: block; width: 100%; padding: 0; border: 0; background: var(--bg); cursor: zoom-in; }
 .screen-open img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: contain; }
+.featured-3dcs .screen-open img { height: auto; aspect-ratio: auto; }
 .screen-expand { position: absolute; right: 12px; bottom: 12px; display: flex; align-items: center; gap: 6px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 5px; color: var(--text); background: rgba(16,23,25,.94); font-size: 11px; }
 .screen-expand .v-icon { font-size: 16px; }
 .featured-screen figcaption { min-height: 95px; padding: 17px 19px; border-top: 1px solid var(--line); }
@@ -86,6 +87,7 @@
 .image-viewer { overflow: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--text); }
 .image-viewer header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 15px 20px; }
 .image-viewer header strong { font-size: 14px; font-weight: 500; }
+.image-viewer-original { margin-left: auto; color: var(--accent); font-size: 12px; white-space: nowrap; }
 .image-viewer header button { display: grid; place-items: center; width: 44px; height: 44px; flex: 0 0 auto; border: 1px solid var(--line); border-radius: 7px; background: transparent; color: var(--text); cursor: pointer; }
 .image-viewer > img { display: block; width: 100%; max-height: 75vh; object-fit: contain; background: var(--bg); }
 .image-viewer > p { margin: 0; padding: 14px 20px; color: var(--muted); font-size: 12px; line-height: 1.7; }
