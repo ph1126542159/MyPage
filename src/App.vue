@@ -10,7 +10,7 @@ const activeSection = ref('#hero')
 const resumeUrl = asset('resume/Peng-Hui-Resume.pdf')
 
 const navItems = [
-  ['首页', '#hero'], ['关于我', '#about'], ['AI 作品', '#ai-projects'], ['项目实践', '#projects'],
+  ['首页', '#hero'], ['关于我', '#about'], ['自主作品', '#ai-projects'], ['项目实践', '#projects'],
   ['技术能力', '#capability'], ['工作经历', '#experience'], ['联系我', '#contact'],
 ]
 const proofItems = [
@@ -95,7 +95,7 @@ onUnmounted(() => {
             <h1>用工程与智能<br />让复杂问题<br /><em>变得简单。</em></h1>
             <p class="hero-lead">13+ 年 C/C++ 开发经验，专注于 Linux、嵌入式系统、Windows 桌面应用、机器人与工业产品。结合 AI 工具，打造更高效率、更可靠的工程解决方案。</p>
             <div class="hero-actions">
-              <a class="button button-primary" href="#ai-projects">探索我的 AI 作品 <v-icon icon="mdi-arrow-right" /></a>
+              <a class="button button-primary" href="#ai-projects">探索我的自主作品 <v-icon icon="mdi-arrow-right" /></a>
               <a class="button button-ghost" :href="resumeUrl" download="彭辉-系统软件工程师-简历.pdf"><v-icon icon="mdi-download-outline" /> 下载简历</a>
             </div>
             <div class="hero-product-links"><span>正在构建</span><a href="#project-myblue">MyBlue <v-icon icon="mdi-arrow-top-right" /></a><a href="#project-codex">CodeX 助手 <v-icon icon="mdi-arrow-top-right" /></a></div>
@@ -106,7 +106,7 @@ onUnmounted(() => {
       </section>
 
       <section id="ai-projects" class="featured-section"><div class="page-width">
-        <header class="featured-section-heading"><div><p class="kicker">Independent Products · AI × Engineering</p><h2>把 AI，做进真实的工程里。</h2><p>两个自主研发的桌面项目，连接硬件创意与软件交付。</p></div><nav aria-label="AI 作品导航"><a href="#project-myblue">MyBlue <v-icon icon="mdi-arrow-down-right" /></a><a href="#project-codex">CodeX 助手 <v-icon icon="mdi-arrow-down-right" /></a></nav></header>
+        <header class="featured-section-heading"><div><p class="kicker">Independent Products · Engineering × Software</p><h2>把想法，做进真实的工程里。</h2><p>三个自主研发的桌面项目，连接硬件创意、软件交付与尺寸工程。</p></div><nav aria-label="自主作品导航"><a href="#project-myblue">MyBlue <v-icon icon="mdi-arrow-down-right" /></a><a href="#project-codex">CodeX 助手 <v-icon icon="mdi-arrow-down-right" /></a><a href="#project-3dcs">OpenDVA / 3DCS <v-icon icon="mdi-arrow-down-right" /></a></nav></header>
         <ProjectShowcase v-for="project in featuredProjects" :key="project.id" :project="project" />
       </div></section>
 
@@ -117,6 +117,7 @@ onUnmounted(() => {
           <div class="project-copy"><p class="project-eyebrow">{{ project.eyebrow }}</p><h3>{{ project.title }}</h3><p>{{ project.summary }}</p>
             <div class="tag-list"><span v-for="tag in project.tags" :key="tag">{{ tag }}</span></div>
             <details><summary>了解这个项目 <v-icon icon="mdi-arrow-right" /></summary><ul><li v-for="item in project.highlights" :key="item">{{ item }}</li></ul></details>
+            <a v-if="project.number === '02'" class="project-detail-link" href="#project-3dcs">查看 6 张界面图与功能介绍 <v-icon icon="mdi-arrow-up-right" /></a>
           </div>
           <figure class="project-media"><img :src="project.image" :alt="project.alt" loading="lazy" /></figure>
           <div class="project-aside"><span v-for="word in project.aside" :key="word">{{ word }}</span></div>

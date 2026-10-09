@@ -7,6 +7,8 @@
 .featured-section-heading nav a:hover { border-color: var(--accent); }
 .featured-section-heading nav .v-icon { font-size: 19px; color: var(--accent); }
 .featured-project { padding-block: 54px 64px; }
+.project-detail-link { display: inline-flex; align-items: center; gap: 7px; margin-top: 16px; color: var(--accent); font-size: 12px; line-height: 1.8; }
+.project-detail-link:hover { text-decoration: underline; }
 .featured-project + .featured-project { border-top: 1px solid var(--line); }
 .featured-heading { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,2fr); gap: 40px; }
 .featured-label { color: var(--accent); font-size: 11px; font-weight: 500; letter-spacing: .04em; }
