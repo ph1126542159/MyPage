@@ -98,7 +98,7 @@ onUnmounted(() => {
               <a class="button button-primary" href="#ai-projects">查看代表作品 <v-icon icon="mdi-arrow-right" /></a>
               <a class="button button-ghost" :href="resumeUrl" download="彭辉-系统软件工程师-简历.pdf"><v-icon icon="mdi-download-outline" /> 下载简历</a>
             </div>
-            <div class="hero-product-links"><span>代表作品</span><a href="#project-codex">CodeX 助手 <v-icon icon="mdi-arrow-top-right" /></a><a href="#project-3dcs">OpenDVA / 3DCS <v-icon icon="mdi-arrow-top-right" /></a></div>
+            <div class="hero-product-links"><span>代表作品</span><a href="#project-codex">AI 助手 <v-icon icon="mdi-arrow-top-right" /></a><a href="#project-3dcs">OpenDVA / 3DCS <v-icon icon="mdi-arrow-top-right" /></a></div>
           </div>
           <figure class="hero-profile"><div class="profile-topline"><span>Peng Hui / 彭辉</span><v-icon icon="mdi-arrow-top-right" /></div><img class="hero-portrait" :src="asset('media/photos/profile-formal-cutout.png')" alt="彭辉正式形象照" /><figcaption class="hero-identity"><div><strong>专注工程落地</strong><span>连接软件、硬件与真实世界</span></div><span class="profile-index">01 / PROFILE</span></figcaption></figure>
         </div>

@@ -67,7 +67,7 @@ export const siteContent = {
       },
       {
         title: 'AI 协同',
-        text: '把 Codex、Claude、Cursor、Prompt、AGENT、Skill 串成现代工程工作流。',
+        text: '把 AI 编程工具、Prompt、Agent、Skill 串成现代工程工作流。',
         icon: 'mdi-brain',
       },
     ],
@@ -331,7 +331,7 @@ export const siteContent = {
         icon: 'mdi-creation-outline',
         bridge: '这是页面刻意强调的第二主线，作为现代开发方法论展示，并与既有工程经验组合成更完整的能力画像。',
         items: [
-          { name: 'AI 编程助手使用', detail: 'Codex CLI / IDE、Claude、Cursor 等，熟练使用 Agent + Skill' },
+          { name: 'AI 编程助手使用', detail: 'AI CLI / IDE、编程助手等，熟练使用 Agent + Skill' },
           { name: 'Skill / Agent 构建', detail: '编写 AGENTS.md、Skill、Prompt 模板，实现自动化任务' },
           { name: 'Prompt Engineering', detail: '高质量自然语言指令生成正确代码，控制 AI 输出' },
           { name: '自动化代码审查 & 测试', detail: 'code-reviewer、static-analysis、unit-test-generator' },
@@ -416,7 +416,7 @@ export const siteContent = {
       },
     ],
     toolset: [
-      'Codex CLI / IDE',
+      'AI CLI / IDE',
       'Claude / Cursor',
       'Prompt Engineering',
       'AGENTS.md / Skills',

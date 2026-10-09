@@ -34,7 +34,7 @@ const selected = computed(() => props.project.screenshots[selectedIndex.value])
         <p class="kicker">实现重点</p>
         <ul class="project-highlights"><li v-for="item in project.engineering" :key="item.title"><strong>{{ item.title }}</strong><p>{{ item.text }}</p></li></ul>
         <div class="tag-list"><span v-for="tech in project.stack.slice(0, 4)" :key="tech">{{ tech }}</span></div>
-        <a class="button button-primary" :href="project.href" :target="project.external ? '_blank' : undefined" :rel="project.external ? 'noopener noreferrer' : undefined">{{ project.external ? project.cta : '交流项目经验' }} <v-icon :icon="project.external ? 'mdi-open-in-new' : 'mdi-arrow-right'" /></a>
+        <a class="button button-primary" :href="project.href" :target="project.external ? '_blank' : undefined" :rel="project.external ? 'noopener noreferrer' : undefined">{{ project.external ? project.cta : (project.contactLabel || '交流项目经验') }} <v-icon :icon="project.external ? 'mdi-open-in-new' : 'mdi-arrow-right'" /></a>
         <p class="project-status-note">{{ project.note }}</p>
       </aside>
     </div>
