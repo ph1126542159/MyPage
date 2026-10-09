@@ -1,11 +1,12 @@
 <script setup>
-import { ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import { siteContent } from './data/siteContent'
 import { featuredProjects } from './data/featuredProjects'
 import ProjectShowcase from './components/ProjectShowcase.vue'
 
 const asset = (path) => `${import.meta.env.BASE_URL}${path}`
 const menuOpen = ref(false)
+const activeSection = ref('#hero')
 const resumeUrl = asset('resume/Peng-Hui-Resume.pdf')
 
 const navItems = [
@@ -55,33 +56,51 @@ const timeline = [
   ['2015 – 2019', '复杂项目', '设备控制与平台架构'], ['2019 – 2023', '产品落地', '机器人与工业软件交付'],
   ['2023 – 至今', 'AI × 工程', '以智能工具放大工程价值'],
 ]
+let scrollFrame = 0
+const updateActiveSection = () => {
+  if (scrollFrame) return
+  scrollFrame = requestAnimationFrame(() => {
+    const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2
+    const current = navItems.filter(([, id]) => document.querySelector(id)?.getBoundingClientRect().top <= 160).at(-1)
+    activeSection.value = atBottom ? '#contact' : current?.[1] ?? '#hero'
+    scrollFrame = 0
+  })
+}
+onMounted(() => {
+  window.addEventListener('scroll', updateActiveSection, { passive: true })
+  updateActiveSection()
+})
+onUnmounted(() => {
+  window.removeEventListener('scroll', updateActiveSection)
+  cancelAnimationFrame(scrollFrame)
+})
 </script>
 
 <template>
-  <v-app><div class="site-shell" :style="{ '--aurora-bg': `url(${asset('media/aurora-lab-bg.png')})` }">
+  <v-app><div class="site-shell">
     <header class="site-header">
       <div class="header-inner">
-        <a class="brand" href="#hero"><strong>Peng Hui</strong><span>Aurora Precision Lab</span></a>
-        <nav class="desktop-nav" aria-label="页面导航"><a v-for="item in navItems" :key="item[1]" :href="item[1]">{{ item[0] }}</a></nav>
+        <a class="brand" href="#hero"><strong>Peng Hui<span class="brand-dot">.</span></strong><span>工程与智能</span></a>
+        <nav class="desktop-nav" aria-label="页面导航"><a v-for="item in navItems" :key="item[1]" :href="item[1]" :class="{ active: activeSection === item[1] }" :aria-current="activeSection === item[1] ? 'location' : undefined">{{ item[0] }}</a></nav>
         <button class="menu-button" type="button" :aria-expanded="menuOpen" aria-label="切换导航" @click="menuOpen = !menuOpen"><v-icon :icon="menuOpen ? 'mdi-close' : 'mdi-menu'" /></button>
       </div>
-      <nav v-if="menuOpen" class="mobile-nav"><a v-for="item in navItems" :key="item[1]" :href="item[1]" @click="menuOpen = false">{{ item[0] }}</a></nav>
+      <nav v-if="menuOpen" class="mobile-nav" aria-label="页面导航"><a v-for="item in navItems" :key="item[1]" :href="item[1]" :aria-current="activeSection === item[1] ? 'location' : undefined" @click="menuOpen = false">{{ item[0] }}</a></nav>
     </header>
 
     <main>
       <section id="hero" class="hero">
         <div class="hero-grid page-width">
           <div class="hero-copy">
-            <p class="kicker">工程 × 机器人 × 工业产品 × AI</p>
-            <h1>用工程与智能<br />让复杂问题变得简单</h1>
+            <p class="kicker">系统软件工程师 · 独立产品开发者</p>
+            <h1>用工程与智能<br />让复杂问题<br /><em>变得简单。</em></h1>
             <p class="hero-lead">13+ 年 C/C++ 开发经验，专注于 Linux、嵌入式系统、Windows 桌面应用、机器人与工业产品。结合 AI 工具，打造更高效率、更可靠的工程解决方案。</p>
             <div class="hero-actions">
               <a class="button button-primary" href="#ai-projects">探索我的 AI 作品 <v-icon icon="mdi-arrow-right" /></a>
               <a class="button button-ghost" :href="resumeUrl" download="彭辉-系统软件工程师-简历.pdf"><v-icon icon="mdi-download-outline" /> 下载简历</a>
             </div>
+            <div class="hero-product-links"><span>正在构建</span><a href="#project-myblue">MyBlue <v-icon icon="mdi-arrow-top-right" /></a><a href="#project-codex">CodeX 助手 <v-icon icon="mdi-arrow-top-right" /></a></div>
           </div>
-          <img class="hero-portrait" :src="asset('media/photos/profile-formal-cutout.png')" alt="彭辉正式形象照" />
-          <div class="hero-identity"><strong>彭 辉</strong><span>Peng Hui</span><i></i><p>专注工程落地<br />连接真实世界</p></div>
+          <figure class="hero-profile"><div class="profile-topline"><span>Peng Hui / 彭辉</span><v-icon icon="mdi-arrow-top-right" /></div><img class="hero-portrait" :src="asset('media/photos/profile-formal-cutout.png')" alt="彭辉正式形象照" /><figcaption class="hero-identity"><div><strong>专注工程落地</strong><span>连接软件、硬件与真实世界</span></div><span class="profile-index">01 / PROFILE</span></figcaption></figure>
         </div>
         <div id="about" class="proof-rail"><div class="proof-grid page-width"><div v-for="item in proofItems" :key="item[0]" class="proof-item"><strong>{{ item[0] }}</strong><span>{{ item[1] }}</span></div></div></div>
       </section>
@@ -106,10 +125,8 @@ const timeline = [
 
       <section id="capability" class="capability-section"><div class="page-width">
         <header class="section-heading compact"><div><p class="kicker">Tech Stack</p><h2>技术能力</h2></div><p>多领域融合的工程能力，解决复杂问题的系统化思维</p></header>
-        <div class="orbit-map" aria-label="工程实践与 AI 增效能力图">
-          <div class="orbit-ring orbit-one"></div><div class="orbit-ring orbit-two"></div>
-          <div class="orbit-core"><span>工程实践</span><b>×</b><strong>AI 增效</strong><small>更高效地解决<br />真实世界的问题</small></div>
-          <div v-for="node in capabilityNodes" :key="node[1]" class="orbit-node" :class="node[3]"><i><v-icon :icon="node[0]" /></i><div><strong>{{ node[1] }}</strong><span>{{ node[2] }}</span></div></div>
+        <div class="capability-grid" aria-label="工程实践与 AI 增效能力">
+          <article v-for="node in capabilityNodes" :key="node[1]" class="capability-item"><v-icon :icon="node[0]" /><div><h3>{{ node[1] }}</h3><p>{{ node[2] }}</p></div></article>
         </div>
       </div></section>
 
@@ -119,7 +136,7 @@ const timeline = [
       </div></section>
 
       <section id="contact" class="closing-section"><div class="page-width closing-content">
-        <p class="kicker">Build · Solve · Automate · Together</p><h2>把复杂问题，变成可落地的答案</h2>
+        <p class="kicker">让想法走向落地</p><h2>下一个复杂问题，<br /><em>一起解决。</em></h2>
         <p>如果你正在寻找一位懂系统、懂产品，也懂如何用 AI 提升工程效率的开发者，欢迎联系我。</p>
         <address class="contact-details">
           <a :href="`tel:${siteContent.hero.phone}`"><v-icon icon="mdi-phone-outline" /><span><small>电话</small><strong>{{ siteContent.hero.phone }}</strong></span></a>

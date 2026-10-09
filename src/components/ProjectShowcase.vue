@@ -9,10 +9,8 @@ const selected = computed(() => props.project.screenshots[selectedIndex.value])
 <template>
   <article :id="`project-${project.id}`" class="featured-project" :class="`featured-${project.id}`">
     <header class="featured-heading">
-      <div class="featured-label"><span>{{ project.number }} / {{ project.category }}</span><span class="featured-status">{{ project.status }}</span></div>
-      <p class="featured-name">{{ project.name }}</p>
-      <h3>{{ project.title }}</h3>
-      <p class="featured-description">{{ project.description }}</p>
+      <div class="featured-intro"><div class="featured-label"><span>{{ project.number }} / {{ project.category }}</span></div><p class="featured-name">{{ project.displayName || project.name }}</p><p v-if="project.alias" class="featured-alias">{{ project.alias }}</p><span class="featured-status">{{ project.status }}</span></div>
+      <div class="featured-story"><h3>{{ project.title }}</h3><p class="featured-description">{{ project.description }}</p></div>
     </header>
 
     <div class="featured-stage">
@@ -33,7 +31,7 @@ const selected = computed(() => props.project.screenshots[selectedIndex.value])
         <p class="gallery-note">{{ project.galleryNote }}</p>
       </div>
       <aside class="featured-value">
-        <p class="kicker">Why I built it</p><h4>{{ project.problem }}</h4><p>{{ project.value }}</p>
+        <p class="kicker">项目价值</p><h4>{{ project.problem }}</h4><p>{{ project.value }}</p>
         <div class="featured-facts"><div v-for="fact in project.facts" :key="fact.label"><strong>{{ fact.value }}</strong><span>{{ fact.label }}</span></div></div>
         <div class="featured-scenario"><span>从这样的需求开始</span><blockquote>{{ project.scenario }}</blockquote><small>{{ project.audience }}</small></div>
         <a class="button button-primary" :href="project.href" :target="project.external ? '_blank' : undefined" :rel="project.external ? 'noopener noreferrer' : undefined">{{ project.cta }} <v-icon :icon="project.external ? 'mdi-open-in-new' : 'mdi-arrow-right'" /></a>

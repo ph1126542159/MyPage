@@ -24,12 +24,12 @@ export default createVuetify({
       portfolio: {
         dark: true,
         colors: {
-          background: '#030a11',
-          surface: '#071521',
-          'surface-bright': '#0b2030',
-          primary: '#5cddff',
-          secondary: '#3988ff',
-          accent: '#7b72ff',
+          background: '#101719',
+          surface: '#182124',
+          'surface-bright': '#202d30',
+          primary: '#82dfd6',
+          secondary: '#82dfd6',
+          accent: '#82dfd6',
           error: '#ff6b6b',
           info: '#6e859d',
           success: '#6f9c8f',

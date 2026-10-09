@@ -33,7 +33,7 @@ export const featuredProjects = [
     cta: '聊聊硬件设计', href: 'mailto:hp1126370@gmail.com',
   },
   {
-    id:'codex', number:'02', name:'GPT-Asstiant / CodeX 助手',category:'AI × 软件交付',status:'Windows 桌面应用',
+    id:'codex', number:'02', name:'GPT-Asstiant / CodeX 助手',displayName:'CodeX 助手',alias:'GPT-Asstiant · AI 开发工作台',category:'AI × 软件交付',status:'Windows 桌面应用',
     title:'从一句需求，\n走进真实的开发工作流。',
     description:'让网页版 ChatGPT 连接本地项目，把读懂代码、修改文件、执行命令、测试构建与经验沉淀串起来。一个桌面工作台，管理 AI 协同开发背后的项目、工具与任务。',
     problem:'AI 给出建议之后，工程工作还要继续。',
@@ -49,7 +49,7 @@ export const featuredProjects = [
       {file:media('codex','build.jpg'),title:'自动测试与构建验证',text:'识别项目类型、测试与构建方式，检查产物并展示验证报告。'},
       {file:media('codex','deploy.jpg'),title:'连接与工作目录配置',text:'管理本地工具和连接通道，指定工作目录，并将连接密钥加密保存在本机。'},
     ],
-    galleryNote:'真实产品界面预览 · 使用内置示例工作区与演示任务数据',
+    galleryNote:'真实产品深色界面预览 · 使用内置示例工作区与演示任务数据',
     features:[
       {icon:'mdi-chat-processing-outline',title:'让对话进入项目',text:'通过 Coding Tools MCP 读取文件、搜索代码、应用修改和运行命令，让需求进入实际开发流程。'},
       {icon:'mdi-folder-lock-outline',title:'项目上下文清晰',text:'绑定项目与聊天，识别工作区、Git 状态与项目指令，在授权范围内组织工具操作。'},
