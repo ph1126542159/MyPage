@@ -8,14 +8,27 @@ const asset = (path) => `${import.meta.env.BASE_URL}${path}`
 const menuOpen = ref(false)
 const activeSection = ref('#hero')
 const resumeUrl = asset('resume/Peng-Hui-Resume.pdf')
+const selectedFeatured = ref('codex')
+const showcaseProjects = ['codex', '3dcs', 'myblue'].map(id => featuredProjects.find(project => project.id === id))
+const syncFeaturedFromHash = () => {
+  const id = window.location.hash.replace('#project-', '')
+  if (showcaseProjects.some(project => project.id === id)) {
+    selectedFeatured.value = id
+    requestAnimationFrame(() => document.getElementById(`project-${id}`)?.scrollIntoView())
+  }
+}
+const selectFeatured = (id) => {
+  selectedFeatured.value = id
+  window.history.replaceState(null, '', `#project-${id}`)
+}
 
 const navItems = [
-  ['首页', '#hero'], ['关于我', '#about'], ['自主作品', '#ai-projects'], ['项目实践', '#projects'],
-  ['技术能力', '#capability'], ['工作经历', '#experience'], ['联系我', '#contact'],
+  ['首页', '#hero'], ['代表作品', '#ai-projects'], ['工程实践', '#projects'],
+  ['技术能力', '#capability'], ['联系我', '#contact'],
 ]
 const proofItems = [
-  ['13+', '年工程经验'], ['C/C++', '核心开发语言'], ['Linux', '嵌入式开发'],
-  ['Windows', '桌面应用'], ['机器人', '系统集成'], ['工业产品', '从 0 到 1 落地'], ['AI × 工程', '提效与创新'],
+  ['13+', '年工程经验'], ['C++ / Qt', '系统与桌面应用'],
+  ['Linux', '嵌入式与设备'], ['AI × 工程', '工具集成与验证'],
 ]
 const projects = [
   {
@@ -25,22 +38,6 @@ const projects = [
     tags: ['Linux', 'C/C++', '机器人', '传感器', '系统集成'],
     highlights: ['完成机器人底盘、执行器与传感器联调', '构建从设备通信到上层业务的完整链路', '以现场问题闭环驱动软件稳定性提升'],
     aside: ['ROBOTS', 'IN', 'REAL WORLD'],
-  },
-  {
-    number: '02', eyebrow: '数字孪生 / 尺寸工程 / C++ 桌面端', title: 'OpenDVA / 3DCS 尺寸变差分析平台',
-    summary: '面向复杂装配的尺寸变差分析与数字孪生验证平台，以 3D 装配、公差建模和统计仿真支撑制造决策。',
-    image: asset('media/products/opendva-3dcs-forge.png'), alt: 'OpenDVA 3DCS 尺寸变差分析平台界面',
-    tags: ['3D 装配与工程树', 'GD&T 公差与测量', 'Monte Carlo 仿真', 'AAO 优化', '批处理与报告'],
-    highlights: ['在三维场景中组织零部件、工位、夹具与变差链', '通过公差、测量和 Monte Carlo 仿真评估装配波动', '支持优化探索、批量计算以及工程报告输出'],
-    aside: ['DIGITAL', 'TWIN', 'ENGINEERING'],
-  },
-  {
-    number: '03', eyebrow: 'AI × 工程效率', title: 'AI 辅助的工程开发实践',
-    summary: '在实际项目中引入 AI 工具，提升代码开发、问题定位、文档编写与测试效率，探索 AI 与工程融合的最佳实践。',
-    image: asset('media/products/robot-debug.jpg'), alt: '工程软件开发与设备调试现场',
-    tags: ['AI 工具', '工程效率', '自动化', '代码质量'],
-    highlights: ['将复杂需求拆分为可验证的工程任务', '让 AI 参与代码审查、测试补强与文档沉淀', '把构建、发布和回归验证组织成稳定流程'],
-    aside: ['AI', 'EMPOWERS', 'ENGINEERS'],
   },
 ]
 const capabilityNodes = [
@@ -67,10 +64,13 @@ const updateActiveSection = () => {
   })
 }
 onMounted(() => {
+  window.addEventListener('hashchange', syncFeaturedFromHash)
+  syncFeaturedFromHash()
   window.addEventListener('scroll', updateActiveSection, { passive: true })
   updateActiveSection()
 })
 onUnmounted(() => {
+  window.removeEventListener('hashchange', syncFeaturedFromHash)
   window.removeEventListener('scroll', updateActiveSection)
   cancelAnimationFrame(scrollFrame)
 })
@@ -91,14 +91,14 @@ onUnmounted(() => {
       <section id="hero" class="hero">
         <div class="hero-grid page-width">
           <div class="hero-copy">
-            <p class="kicker">系统软件工程师 · 独立产品开发者</p>
-            <h1>用工程与智能<br />让复杂问题<br /><em>变得简单。</em></h1>
-            <p class="hero-lead">13+ 年 C/C++ 开发经验，专注于 Linux、嵌入式系统、Windows 桌面应用、机器人与工业产品。结合 AI 工具，打造更高效率、更可靠的工程解决方案。</p>
+            <p class="kicker">彭辉 · C++ / 系统软件 / 工业软件</p>
+            <h1>把复杂系统<br />做成<em>可交付的软件。</em></h1>
+            <p class="hero-lead">13+ 年 C/C++ 研发经验，覆盖 Linux、嵌入式与 Windows 桌面应用。用工业项目和自主产品，展示从系统设计、开发联调到测试交付的工程能力。</p>
             <div class="hero-actions">
-              <a class="button button-primary" href="#ai-projects">探索我的自主作品 <v-icon icon="mdi-arrow-right" /></a>
+              <a class="button button-primary" href="#ai-projects">查看代表作品 <v-icon icon="mdi-arrow-right" /></a>
               <a class="button button-ghost" :href="resumeUrl" download="彭辉-系统软件工程师-简历.pdf"><v-icon icon="mdi-download-outline" /> 下载简历</a>
             </div>
-            <div class="hero-product-links"><span>正在构建</span><a href="#project-myblue">MyBlue <v-icon icon="mdi-arrow-top-right" /></a><a href="#project-codex">CodeX 助手 <v-icon icon="mdi-arrow-top-right" /></a></div>
+            <div class="hero-product-links"><span>代表作品</span><a href="#project-codex">CodeX 助手 <v-icon icon="mdi-arrow-top-right" /></a><a href="#project-3dcs">OpenDVA / 3DCS <v-icon icon="mdi-arrow-top-right" /></a></div>
           </div>
           <figure class="hero-profile"><div class="profile-topline"><span>Peng Hui / 彭辉</span><v-icon icon="mdi-arrow-top-right" /></div><img class="hero-portrait" :src="asset('media/photos/profile-formal-cutout.png')" alt="彭辉正式形象照" /><figcaption class="hero-identity"><div><strong>专注工程落地</strong><span>连接软件、硬件与真实世界</span></div><span class="profile-index">01 / PROFILE</span></figcaption></figure>
         </div>
@@ -106,18 +106,18 @@ onUnmounted(() => {
       </section>
 
       <section id="ai-projects" class="featured-section"><div class="page-width">
-        <header class="featured-section-heading"><div><p class="kicker">Independent Products · Engineering × Software</p><h2>把想法，做进真实的工程里。</h2><p>三个自主研发的桌面项目，连接硬件创意、软件交付与尺寸工程。</p></div><nav aria-label="自主作品导航"><a href="#project-myblue">MyBlue <v-icon icon="mdi-arrow-down-right" /></a><a href="#project-codex">CodeX 助手 <v-icon icon="mdi-arrow-down-right" /></a><a href="#project-3dcs">OpenDVA / 3DCS <v-icon icon="mdi-arrow-down-right" /></a></nav></header>
-        <ProjectShowcase v-for="project in featuredProjects" :key="project.id" :project="project" />
+        <header class="featured-section-heading"><div><p class="kicker">Selected Products</p><h2>用作品，说明实现能力。</h2><p>从 AI 开发工具到工业分析软件，选择一个项目查看。</p></div></header>
+        <nav class="product-selector" aria-label="代表作品切换"><button v-for="project in showcaseProjects" :key="project.id" type="button" :aria-pressed="selectedFeatured === project.id" :aria-controls="`project-${project.id}`" :class="{ selected: selectedFeatured === project.id }" @click="selectFeatured(project.id)"><strong>{{ project.displayName || project.name }}</strong><span>{{ project.category }}</span></button></nav>
+        <ProjectShowcase v-for="project in showcaseProjects" v-show="selectedFeatured === project.id" :key="project.id" :project="project" />
       </div></section>
 
       <section id="projects" class="projects-section"><div class="page-width">
-        <header class="section-heading"><div><p class="kicker">Selected Work</p><h2>精选项目实践</h2></div><p>真实项目 · 真实场景 · 真实代码 · 真实结果</p><a href="#project-02">查看重点项目 <v-icon icon="mdi-arrow-right" /></a></header>
+        <header class="section-heading"><div><p class="kicker">Engineering Experience</p><h2>软件之外，还有现场。</h2></div><a :href="resumeUrl" download>完整经历见简历 <v-icon icon="mdi-arrow-down" /></a></header>
         <article v-for="project in projects" :id="`project-${project.number}`" :key="project.number" class="project-row" :class="`project-${project.number}`">
           <div class="project-number">{{ project.number }}</div>
           <div class="project-copy"><p class="project-eyebrow">{{ project.eyebrow }}</p><h3>{{ project.title }}</h3><p>{{ project.summary }}</p>
             <div class="tag-list"><span v-for="tag in project.tags" :key="tag">{{ tag }}</span></div>
             <details><summary>了解这个项目 <v-icon icon="mdi-arrow-right" /></summary><ul><li v-for="item in project.highlights" :key="item">{{ item }}</li></ul></details>
-            <a v-if="project.number === '02'" class="project-detail-link" href="#project-3dcs">查看 6 张界面图与功能介绍 <v-icon icon="mdi-arrow-up-right" /></a>
           </div>
           <figure class="project-media"><img :src="project.image" :alt="project.alt" loading="lazy" /></figure>
           <div class="project-aside"><span v-for="word in project.aside" :key="word">{{ word }}</span></div>
@@ -131,14 +131,15 @@ onUnmounted(() => {
         </div>
       </div></section>
 
-      <section id="experience" class="experience-section"><div class="page-width">
+      <section id="experience" class="experience-section"><details class="page-width career-more">
+        <summary>查看职业轨迹 <v-icon icon="mdi-chevron-down" /></summary>
         <header class="section-heading compact"><div><p class="kicker">Career Path</p><h2>职业轨迹</h2></div><p>持续积累，在实践中成长</p></header>
         <div class="timeline"><article v-for="(item, index) in timeline" :key="item[0]" :class="{ active: index === timeline.length - 1 }"><div class="timeline-dot"></div><strong>{{ item[0] }}</strong><h3>{{ item[1] }}</h3><p>{{ item[2] }}</p></article></div>
-      </div></section>
+      </details></section>
 
       <section id="contact" class="closing-section"><div class="page-width closing-content">
-        <p class="kicker">让想法走向落地</p><h2>下一个复杂问题，<br /><em>一起解决。</em></h2>
-        <p>如果你正在寻找一位懂系统、懂产品，也懂如何用 AI 提升工程效率的开发者，欢迎联系我。</p>
+        <p class="kicker">Let's Talk Engineering</p><h2>聊聊你的<em>技术岗位。</em></h2>
+        <p>系统软件、C++ 桌面应用与工业软件研发。欢迎交流岗位需求、项目经历与实现细节。</p>
         <address class="contact-details">
           <a :href="`tel:${siteContent.hero.phone}`"><v-icon icon="mdi-phone-outline" /><span><small>电话</small><strong>{{ siteContent.hero.phone }}</strong></span></a>
           <a :href="`mailto:${siteContent.hero.email}`"><v-icon icon="mdi-email-outline" /><span><small>邮箱</small><strong>{{ siteContent.hero.email }}</strong></span></a>

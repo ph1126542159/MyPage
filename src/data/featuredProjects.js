@@ -3,6 +3,8 @@ const media = (project, file) => `${import.meta.env.BASE_URL}media/projects/${pr
 export const featuredProjects = [
   {
     id: 'myblue', number: '01', name: 'MyBlue', category: 'AI × 硬件设计', status: '开发预览',
+    compactSummary: 'C++ / Qt 硬件设计工作台，将需求、BOM、接线和三维装配关联到同一工程，接入 Codex 与专业设计引擎。',
+    engineering: [{title:'跨工具集成',text:'连接 KiCad、CadQuery / OpenCASCADE 与 MuJoCo。'},{title:'工程数据关联',text:'把器件、引脚、结构与制作资料组织到同一项目。'},{title:'阶段记录与复核',text:'区分报价、仿真与待验证项，保留设计快照。'}],
     title: '把硬件想法，\n变成看得见的工程方案。',
     description: '系统方案、器件采购、电气接线、三维装配、制作交付——让分散的硬件设计环节在一个桌面工作台里连起来。用自然语言提出需求，通过本机 Codex 辅助完善同一份工程。',
     problem: '做硬件，最难的往往是把所有细节连起来。',
@@ -34,6 +36,8 @@ export const featuredProjects = [
   },
   {
     id:'codex', number:'02', name:'GPT-Asstiant / CodeX 助手',displayName:'CodeX 助手',alias:'GPT-Asstiant · AI 开发工作台',category:'AI × 软件交付',status:'Windows 桌面应用',
+    compactSummary:'Windows AI 开发工作台，把 ChatGPT 对话接到授权的本地项目，串联代码修改、长任务、测试构建与知识沉淀。',
+    engineering:[{title:'项目与工具边界',text:'绑定项目和聊天，在授权工作区内连接本地工具。'},{title:'任务追踪与恢复',text:'管理执行步骤、后台命令与检查点，支持中断后继续。'},{title:'可检查的软件交付',text:'结合 Git / Worktree、差异检查与测试构建，提供 Windows 安装包。'}],
     title:'从一句需求，\n走进真实的开发工作流。',
     description:'让网页版 ChatGPT 连接本地项目，把读懂代码、修改文件、执行命令、测试构建与经验沉淀串起来。一个桌面工作台，管理 AI 协同开发背后的项目、工具与任务。',
     problem:'AI 给出建议之后，工程工作还要继续。',
@@ -66,6 +70,8 @@ export const featuredProjects = [
   {
     id: '3dcs', number: '03', name: 'OpenDVA / 3DCS Forge', displayName: 'OpenDVA / 3DCS',
     alias: '三维尺寸变差分析平台', category: '尺寸工程 × 统计仿真', status: '开发预览',
+    compactSummary: 'C++ / Qt 三维尺寸分析平台，将装配、公差、测量与 Monte Carlo 仿真连接起来，分析偏差分布和关键变差来源。',
+    engineering: [{title:'工业软件建模',text:'组织零件、装配关系、GD&T 与测量目标。'},{title:'可复现的统计计算',text:'配置随机种子与抽样参数，查看统计和贡献度结果。'},{title:'计算与展示衔接',text:'关联 Qt3D 工作区、分析结果与 HTML / CSV 报告。'}],
     title: '看见装配偏差，\n找到影响质量的关键因素。',
     description: '零件尺寸都在允许范围内，装配后仍可能出现间隙不均、面差超标。OpenDVA 把装配关系、公差、测量与统计仿真放进同一个桌面工作台，帮助工程师分析偏差从哪里来、哪些因素值得优先调整。',
     problem: '从“能否装上”，走向“装配质量是否稳定”。',

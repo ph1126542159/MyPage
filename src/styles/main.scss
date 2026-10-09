@@ -208,3 +208,30 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
   html { scroll-behavior: auto; }
   *, *:before, *:after { transition: none !important; }
 }
+
+/* Keep the first pass focused on role, evidence and contact. */
+.hero-grid { padding-block: 52px; }
+.proof-grid { grid-template-columns: repeat(4,minmax(0,1fr)); }
+.projects-section, .capability-section, .closing-section { padding-block: 48px; }
+.experience-section { padding-block: 0 28px; }
+.career-more { border-block: 1px solid var(--line); }
+.career-more[open] { padding-bottom: 24px; }
+.projects-section .project-row { grid-template-columns: 28px minmax(0,1fr) 240px; padding-block: 26px; }
+.projects-section .project-media { height: 180px; }
+.projects-section .project-aside { display: none; }
+.closing-content h2 { font-size: clamp(30px,3.5vw,44px); }
+@media (max-width:640px) {
+  .hero-grid { padding-block: 30px; gap: 22px; }
+  .hero-profile { height: 230px; }
+  .hero-portrait { height: 195px; }
+  .proof-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 20px 0; }
+  .proof-item:nth-child(n) { padding-inline: 12px; border-left: 1px solid var(--line); }
+  .proof-item:nth-child(odd) { padding-left: 0; border-left: 0; }
+  .projects-section, .capability-section, .closing-section { padding-block: 34px; }
+  .experience-section { padding-block: 0 20px; }
+  .projects-section .project-row { grid-template-columns: minmax(0,1fr); gap: 16px; }
+  .projects-section .project-copy { grid-column: 1; grid-row: 1; }
+  .projects-section .project-number { display: none; }
+  .projects-section .project-media { grid-column: 1; grid-row: 2; height: 130px; }
+  .closing-content h2 { font-size: 31px; }
+}

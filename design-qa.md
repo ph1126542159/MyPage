@@ -47,3 +47,13 @@ final result: passed
 - Responsive check: 390 × 844 viewport, six thumbnails arranged in two rows, no horizontal page overflow.
 - Local production and `/MyPage/` base-path builds passed; emitted image files are present. Screenshot evidence: `design-audit/3dcs-desktop-2026-10-09.jpg` and `design-audit/3dcs-mobile-2026-10-09.jpg` (local QA artifacts).
 - This verifies the website presentation, not full software acceptance. Current functionality boundaries are based on the 3DCS README and `docs/reports/2026-10-08-screenshot-current-evidence.md`.
+
+## 2026-10-09 — Compact portfolio for hiring reviewers
+
+- Audience confirmed by the user: recruiters and technical leaders. The hero now identifies C++ / systems / industrial software work, with representative products and a resume action.
+- Three projects share a selector; CodeX Assistant is the default. Each shows three implementation highlights. Full functions and workflows remain available through a native details control. All original project images and development-status notes are retained.
+- Removed duplicate 3DCS and generic AI summary rows; kept robotics field experience. Career details are collapsed by default. Reduced navigation and spacing.
+- At the same 1280px desktop viewport, default document height changed from 8664px to 3648px (57.9% reduction). At 390px mobile, height changed from 13438px to 4660px (65.3% reduction). Measurements apply to the default CodeX view with details closed.
+- Browser checks: all three project selections show one panel; detailed features expand and collapse; the 3DCS hash reveals its panel; image selection updates the caption; the GD&T enlarged image loads and closes. Mobile has no horizontal overflow. Console warning/error capture is empty.
+- Root and `/MyPage/` production builds passed, along with Git whitespace checks. Local visual evidence: `design-audit/compact-home-2026-10-09.jpg`.
+- Hiring evidence to add when available: personal responsibility, an important engineering tradeoff, and reproducible outcome metrics. No performance improvements or user counts were invented.
