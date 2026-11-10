@@ -1,5 +1,5 @@
 .featured-section { padding-block: 85px 20px; }
-.product-selector { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; margin-top: 22px; }
+.product-selector { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; margin-top: 22px; }
 .product-selector button { padding: 16px 18px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); text-align: left; color: var(--text); cursor: pointer; }
 .product-selector button.selected { border-color: var(--accent); background: var(--surface-raised); }
 .product-selector button:hover { border-color: var(--accent); }

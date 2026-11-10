@@ -8,8 +8,8 @@ const asset = (path) => `${import.meta.env.BASE_URL}${path}`
 const menuOpen = ref(false)
 const activeSection = ref('#hero')
 const resumeUrl = asset('resume/Peng-Hui-Resume.pdf')
-const selectedFeatured = ref('codex')
-const showcaseProjects = ['codex', '3dcs', 'myblue'].map(id => featuredProjects.find(project => project.id === id))
+const selectedFeatured = ref('pro-m3')
+const showcaseProjects = ['pro-m3', 'codex', '3dcs', 'myblue'].map(id => featuredProjects.find(project => project.id === id))
 const syncFeaturedFromHash = () => {
   const id = window.location.hash.replace('#project-', '')
   if (showcaseProjects.some(project => project.id === id)) {
@@ -96,9 +96,9 @@ onUnmounted(() => {
             <p class="hero-lead">13+ 年 C/C++ 研发经验，覆盖 Linux、嵌入式与 Windows 桌面应用。用工业项目和自主产品，展示从系统设计、开发联调到测试交付的工程能力。</p>
             <div class="hero-actions">
               <a class="button button-primary" href="#ai-projects">查看代表作品 <v-icon icon="mdi-arrow-right" /></a>
-              <a class="button button-ghost" :href="resumeUrl" download="彭辉-系统软件工程师-简历.pdf"><v-icon icon="mdi-download-outline" /> 下载简历</a>
+              <a class="button button-ghost" :href="resumeUrl" download="彭辉-机器人系统软件-简历.pdf"><v-icon icon="mdi-download-outline" /> 下载简历</a>
             </div>
-            <div class="hero-product-links"><span>代表作品</span><a href="#project-codex">AI 助手 <v-icon icon="mdi-arrow-top-right" /></a><a href="#project-3dcs">OpenDVA / 3DCS <v-icon icon="mdi-arrow-top-right" /></a></div>
+            <div class="hero-product-links"><span>代表作品</span><a href="#project-pro-m3">PRO_M3 机器人 <v-icon icon="mdi-arrow-top-right" /></a><a href="#project-codex">AI 助手 <v-icon icon="mdi-arrow-top-right" /></a><a href="#project-3dcs">OpenDVA / 3DCS <v-icon icon="mdi-arrow-top-right" /></a></div>
           </div>
           <figure class="hero-profile"><div class="profile-topline"><span>Peng Hui / 彭辉</span><v-icon icon="mdi-arrow-top-right" /></div><img class="hero-portrait" :src="asset('media/photos/profile-formal-cutout.png')" alt="彭辉正式形象照" /><figcaption class="hero-identity"><div><strong>专注工程落地</strong><span>连接软件、硬件与真实世界</span></div><span class="profile-index">01 / PROFILE</span></figcaption></figure>
         </div>
@@ -106,7 +106,7 @@ onUnmounted(() => {
       </section>
 
       <section id="ai-projects" class="featured-section"><div class="page-width">
-        <header class="featured-section-heading"><div><p class="kicker">Selected Products</p><h2>用作品，说明实现能力。</h2><p>从 AI 开发工具到工业分析软件，选择一个项目查看。</p></div></header>
+        <header class="featured-section-heading"><div><p class="kicker">Selected Products</p><h2>用作品，说明实现能力。</h2><p>从机器人系统到 AI 工具与工业软件，选择一个项目查看。</p></div></header>
         <nav class="product-selector" aria-label="代表作品切换"><button v-for="project in showcaseProjects" :key="project.id" type="button" :aria-pressed="selectedFeatured === project.id" :aria-controls="`project-${project.id}`" :class="{ selected: selectedFeatured === project.id }" @click="selectFeatured(project.id)"><strong>{{ project.displayName || project.name }}</strong><span>{{ project.category }}</span></button></nav>
         <ProjectShowcase v-for="project in showcaseProjects" v-show="selectedFeatured === project.id" :key="project.id" :project="project" />
       </div></section>
@@ -144,7 +144,7 @@ onUnmounted(() => {
           <a :href="`tel:${siteContent.hero.phone}`"><v-icon icon="mdi-phone-outline" /><span><small>电话</small><strong>{{ siteContent.hero.phone }}</strong></span></a>
           <a :href="`mailto:${siteContent.hero.email}`"><v-icon icon="mdi-email-outline" /><span><small>邮箱</small><strong>{{ siteContent.hero.email }}</strong></span></a>
         </address>
-        <div class="hero-actions"><a class="button button-primary" :href="`mailto:${siteContent.hero.email}`"><v-icon icon="mdi-email-outline" /> 联系我</a><a class="button button-ghost" :href="resumeUrl" download="彭辉-系统软件工程师-简历.pdf"><v-icon icon="mdi-download-outline" /> 下载简历</a></div>
+        <div class="hero-actions"><a class="button button-primary" :href="`mailto:${siteContent.hero.email}`"><v-icon icon="mdi-email-outline" /> 联系我</a><a class="button button-ghost" :href="resumeUrl" download="彭辉-机器人系统软件-简历.pdf"><v-icon icon="mdi-download-outline" /> 下载简历</a></div>
       </div></section>
     </main>
     <footer class="site-footer"><div class="page-width"><strong>Peng Hui</strong><span>Engineering clarity for complex systems.</span><small>© 2026 Aurora Precision Lab</small></div></footer>

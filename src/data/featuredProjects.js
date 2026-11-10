@@ -2,6 +2,36 @@ const media = (project, file) => `${import.meta.env.BASE_URL}media/projects/${pr
 
 export const featuredProjects = [
   {
+    id: 'pro-m3', number: '01', name: 'PRO_M3', category: '机器人 × 系统工程', status: '仿真验证完成 · 台架准备中',
+    compactSummary: '个人移动机器人研发项目。以 ROS 2、Nav2、Gazebo 与 PocoDDSRuntime 连接语义任务、导航、RGB-D 感知和运行报告，让每一步执行都能追踪与验证。',
+    engineering: [
+      {title:'机器人系统集成',text:'本地 Qwen3 14B、任务计划、Nav2 与同步 RGB-D 构成受控语义巡查仿真闭环。'},
+      {title:'执行前的安全准入',text:'独立 ROS 2 Guard 核验请求及策略；拒绝、响应丢弃、进程退出 3 类故障均在导航前阻断。'},
+      {title:'有记录的仿真验证',text:'一组冻结场景导航误差 0.104 m，碰撞与速度违规均为 0；以日志、源码快照及哈希清单复核。'},
+    ],
+    title: '从语义任务，\n到可验证的机器人执行。',
+    problem: '把任务理解、执行权限与机器人状态分开管理。',
+    value: '模型提出语义意图，确定性 Guard 校验地点与权限，PocoDDSRuntime 组织任务计划，ROS 2 执行导航与观察。以真实运行终态形成报告，模型不能直接下发速度或关节指令。',
+    scenario: '仿真验证场景：“到东通道检查有没有堵塞。”',
+    screenshots: [
+      {file:media('pro-m3','concept.png'),title:'室内外统一整机概念设计',text:'四驱大轮、悬挂、传感器与机械臂收纳的产品造型方向。此图为概念图，不是实物照片。'},
+      {file:media('pro-m3','design-board.png'),title:'四视图与机械臂状态设计',text:'机械布局及造型控制参考。结构、尺寸、防护和真实机械性能仍需实物验证。'},
+    ],
+    galleryNote:'产品设计资料 · 概念图不代表实体机器人已制造或通过验收',
+    features: [
+      {icon:'mdi-robot-industrial',title:'统一机器人架构',text:'围绕四驱移动操作机器人组织业务、ROS 2、嵌入式、机械接口与阶段验证。'},
+      {icon:'mdi-map-marker-path',title:'导航与任务闭环',text:'以 Nav2 action 状态、位置误差与停止证据判定结果，区分成功、取消和超时。'},
+      {icon:'mdi-camera-outline',title:'同步视觉观察',text:'关联 RGB-D、注册深度、检测结果与请求标识；当前视觉结果来自受控仿真。'},
+      {icon:'mdi-shield-check-outline',title:'独立运行时 Guard',text:'以请求和决策 Schema、请求摘要及策略摘要控制导航准入，异常时停止放行。'},
+      {icon:'mdi-file-check-outline',title:'验证证据可复核',text:'保留源码快照、运行记录与 SHA-256 清单，通过离线裁决检查结果和故障行为。'},
+      {icon:'mdi-wrench-outline',title:'向硬件验证推进',text:'下一阶段为最小单轮台架；真实传感器、急停、电气安全、抓取和回充分别验收。'},
+    ],
+    workflow: ['语义提议','Guard 校验','任务计划','导航与观察','报告与复核'],
+    stack: ['ROS 2 / Nav2','Gazebo','PocoDDSRuntime','C++ / Python','OpenCV','Qwen3'],
+    note: '个人研发项目：当前成果为受控电脑仿真。实机、抓取、回充和整机可靠性尚待验收；0.104 m 为单场景记录，不代表平均或实机精度。',
+    cta: '交流机器人研发', contactLabel: '交流机器人研发', href: 'mailto:hp1126370@gmail.com?subject=PRO_M3',
+  },
+  {
     id: 'myblue', number: '01', name: 'MyBlue', category: 'AI × 硬件设计', status: '开发预览',
     compactSummary: 'C++ / Qt 硬件设计工作台，将需求、BOM、接线和三维装配关联到同一工程，接入 AI 辅助工具与专业设计引擎。',
     engineering: [{title:'跨工具集成',text:'连接 KiCad、CadQuery / OpenCASCADE 与 MuJoCo。'},{title:'工程数据关联',text:'把器件、引脚、结构与制作资料组织到同一项目。'},{title:'阶段记录与复核',text:'区分报价、仿真与待验证项，保留设计快照。'}],
